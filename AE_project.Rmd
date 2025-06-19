@@ -1,0 +1,3199 @@
+---
+title: "Sectoral AI adoption and its effects on employment and economic output in EU"
+author: "Anna Kędzierska-Głodek"
+date: "2025-06-09"
+runtime: shiny
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: true
+    number_sections: true
+    toc_depth: 3
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd('/Users/anna/Data Science and Business Analytics/2-03. Advanced Econometrics/PROJECT/DATA/DATA/AE_project_Kędzierska-Głodek')
+```
+
+[FINAL PAPER FOR ADVANCED ECONOMETRICS COURSE]{.smallcaps}
+
+[DATA SCIENCE AND BUSINESS ANALYTICS 2024/2025]{.smallcaps}
+
+UNIVERSITY OF WARSAW, FACULTY OF ECONOMIC SCIENCES
+
+# Abstract
+
+This analysis examines the impact of AI adoption in enterprises on
+employment rates and economic performance in European Union (EU)
+countries, recognizing the significant implications of AI for economic
+structures and employment dynamics. The primary objective is to
+understand how higher AI adoption in enterprises in EU countries affects
+the employment rate of people aged 20–64, assuming that AI technologies
+complement human labour and create new employment opportunities. A
+secondary objective is to investigate whether this relationship exhibits
+gender-specific effects, hypothesizing a stronger positive impact on
+female employment rates compared to male. The research addresses the
+urgent economic problem of managing the disruptive consequences of AI
+while harnessing its benefits, especially given the uncertainty
+surrounding its full impact and transitional challenges. The methodology
+employs a general-to-specific modelling approach using a panel dataset
+covering the 27 EU countries from 2021–2024. Regarding the main
+hypothesis (H1), the analysis established a robust modelling framework
+for assessing AI's impact on overall employment, consistently
+identifying panel and random effects. For the secondary hypothesis (H2),
+the results are mixed and very nuanced, indicating a complex and
+sector-specific relationship between AI adoption and gender-specific
+employment rates. While some sectors, such as water supply, sewerage,
+waste management, and information and communication showed a stronger
+positive and statistically significant effect of AI adoption on female
+employment rates, supporting H2, other sectors contradicted this.
+Specifically, the AI hiring index, manufacturing, and professional,
+scientific and technical activities showed a negative effect, which was
+stronger for female employment. These results underline the need for
+targeted policies that address gender-specific challenges and employment
+opportunities arising from the adoption of AI across sectors.
+
+# Introduction
+
+Analysing AI adoption and its impact on labour market outcomes is
+critical because of its implications for economic structures and
+employment dynamics across sectors. AI technologies have introduced
+significant disparities in job creation and replacement, as some
+industries experience automation that makes some roles obsolete while
+creating new opportunities in emerging fields. Understanding these
+changes is essential for policymakers to develop strategies to mitigate
+negative impacts, particularly in low-skilled sectors where job losses
+are most evident. Also, integrating AI has potential to increase
+productivity and economic growth, although it comes with the risk of
+increasing inequality. As companies across sectors, including healthcare
+and finance, increasingly adopt AI, analysing sector-specific challenges
+and successes becomes crucial to supporting effective workforce
+transitions and reskilling initiatives. Therefore, this topic presents
+urgent economic problem that requires multifaceted solutions to harness
+benefits of AI while addressing its disruptive consequences. [1,2,3,4,5]
+
+## Description Of the Problem
+
+The problem of sectoral AI adoption and its impact on employment and
+economic output in the European Union is multi-faceted due to
+uncertainty about the full scope of AI’s impact, significant
+transitional challenges, and the complexity of developing adaptive
+policy frameworks and supporting social acceptance.
+
+Key aspects of this problem include:
+
+-   Uncertain and dual impacts on employment. AI ​​revolution is in its
+    early stages and is still evolving, presenting both the potential to
+    replace jobs and create new employment opportunities. There is no
+    clear consensus in the existing literature on whether AI will
+    ultimately lead to net job losses or gains. Sectors traditionally
+    dependent on manual labour are identified as most vulnerable to job
+    replacement. [1,2]
+-   Transitional challenges and skills gaps. Current phase of AI
+    adoption is characterized by transitional challenges, where
+    AI-driven economic growth does not immediately translate into
+    widespread job creation. A key issue is the need for adaptive
+    policies and education systems to prepare the workforce for these
+    changes. Therefore, effective reskilling and upskilling programs are
+    key interventions to mitigate the negative impacts and equip workers
+    for new AI-enabled roles. [2,4]
+-   Regulatory and policy ambiguity in the EU context. The European
+    Union faces particular challenges in establishing a comprehensive AI
+    policy framework. There are significant geographical differences in
+    regulatory approaches to AI around the world. A key issue is
+    ensuring “privacy by design” in the technological infrastructure and
+    clearly defining responsibilities, liabilities and culpability among
+    human and AI stakeholders. [5]
+-   Impact on economic outcomes and the potential for increasing
+    inequality. While AI offers significant potential for increasing
+    productivity, there is a significant risk of deepening existing
+    inequalities if the economic benefits of AI are not shared widely
+    across society. [2,4,5]
+-   Implementation barriers and trust. In addition to policy and skills,
+    there are fundamental barriers to practical AI implementation. “Lack
+    of integration” with existing systems, difficulties with
+    “information sharing,” and the broader need to “promote standards”
+    and “build capacity” in the AI ​​ecosystem. [2,5]
+
+## Research Hypotheses
+
+Based on the literature the following hypotheses are worth testing.
+
+**Main Hypothesis (H1):** Higher levels of enterprise AI adoption in EU
+countries lead to increased employment rates in the 20-64 age group, as
+AI technologies complement human labour and create new job opportunities
+rather than displacing workers.
+
+**Secondary Hypothesis (H2):** The relationship between AI adoption and
+employment exhibits gender-specific effects, with AI adoption having a
+stronger positive impact on female employment rates compared to male
+employment rates in EU countries.
+
+# Literature Review
+
+## Main Hypothesis (H1)
+
+The core of this hypothesis addresses the dual possibilities presented
+by AI: job displacement versus the creation of new employment
+opportunities [1,2]. Several sources support the potential for AI to
+lead to net job creation or a positive correlation with employment
+rates:
+
+-   Empirical analysis, specifically regression analysis of data from
+    2012 to 2022, suggests that AI development generally has a negative
+    correlation with unemployment rates, implying that increased AI
+    adoption can be linked to lower unemployment levels [1].
+-   The popularity of the term "Artificial Intelligence", as measured by
+    Google Trends data, correlates with job creation. This indicates
+    that high public interest can drive investments in AI-driven
+    enterprises, fostering job growth [1].
+-   AI integration has the potential to enhance productivity and
+    stimulate economic growth. This broader economic benefit can
+    contribute to overall employment growth by fostering a more dynamic
+    and expanding economy [1,2,3].
+-   Specific industry implications show increased job creation in the
+    information technology and consumer goods sectors, illustrating a
+    clear trend of job growth in industries with rapid AI adoption. This
+    suggests that AI can act as a catalyst for job creation in specific
+    domains [1,5].
+-   In developed economies where AI adoption is higher, there is
+    evidence of falling unemployment rates, suggesting that AI can
+    generate new roles as quickly as it makes old ones obsolete. This
+    view is consistent with the idea that AI can complement human work
+    rather than completely replace it [1,2].
+-   While AI adoption and innovation may initially pose challenges
+    leading to job losses, strategic AI implementation significantly
+    mitigates these negative effects and improves employment conditions
+    in the long term. This suggests that this relationship is complex
+    and dependent on policy and strategic choices [2].
+
+## Secondary Hypothesis (H2)
+
+Despite that cited sources do not provide direct findings supporting a
+stronger positive impact on female employment, they indicate that the
+gendered impact of AI adoption on employment is a key area of ​​active
+research and analysis. Few sources address the intersection of
+AI/automation and gender in the labour market. Discussions include
+gender as a potential dimension of inequalities, requiring research on
+whether the benefits of AI are broadly distributed across socioeconomic
+groups [1,2,3]. Thus, considering gender as a variable affecting the
+labour market in the context of AI makes this a valid hypothesis.
+
+# Data
+
+## Datasets Overview
+
+The analysis combines four datasets covering EU countries for 2021-2024:
+
+1.  [**AI Hiring Index
+    Data**](https://oecd.ai/en/data?selectedArea=ai-jobs-and-skills&selectedVisualization=ai-hiring-over-time&visualizationFiltersHash=eyJlbnRpdGllcyI6eyJDb3VudHJ5IjpbIkxVIiwiSUUiLCJDSCIsIkRFIiwiQVIiLCJBVSIsIkFUIiwiQkUiLCJCUiIsIkNBIiwiQ0wiLCJDUiIsIkhSIiwiQ1kiLCJDWiIsIkRLIiwiRUUiLCJGSSIsIkZSIiwiR1IiLCJISyIsIkhVIiwiSU4iLCJJRCIsIklMIiwiSVQiLCJLUiIsIkxWIiwiTFQiLCJNWCIsIk5MIiwiTloiLCJOTyIsIlBMIiwiUFQiLCJSTyIsIlNBIiwiU0ciLCJTSSIsIlpBIiwiRVMiLCJTRSIsIlRSIiwiQUUiLCJHQiIsIlVTIiwiVVkiXX0sImRhdGUiOlsiMjAyMTAxIiwiMjAyNDEyIl19)(data.csv):
+
+-   Source: OECD.AI – LinkedIn-based AI hiring trends
+-   Coverage: 47 countries, monthly data for years 2018-2025 → monthly
+    data for years 2021-2024 transformed to annual means
+-   Selected variables: Country, ref_date, Relative_AI_hiring_index_pct
+-   Key variable: AI hiring intensity index – ratio of AI talent hiring
+    relative to overall hiring of LinkedIn members per country 12-month
+    moving average going back from December
+
+2.  [**EU Employment
+    Data**](https://ec.europa.eu/eurostat/databrowser/view/lfsi_emp_a__custom_16965495/default/table?lang=en)
+    (estat_lfsi_emp_a_filtered_en.csv):
+
+-   Source: Eurostat – Labour Force Survey
+-   Coverage: 27 EU countries, annual 2021-2024
+-   Selected variables: sex, geo, TIME_PERIOD, OBS_VALUE
+-   Key variable: employment percentage of total population
+
+3.  [**Labour productivity and unit labour costs by
+    industry**](https://ec.europa.eu/eurostat/databrowser/view/nama_10_lp_a21__custom_17009168/default/table?lang=en)
+    (estat_nama_10_lp_a21_filtered_en.csv):
+
+-   Source: Eurostat
+-   Coverage: 27 EU countries, annual 2021-2024
+-   Selected variables: nace_r2, geo, TIME_PERIOD, OBS_VALUE
+-   Key variable: real labour productivity per hour worked (percentage
+    change on previous period)
+
+4.  [**EU GDP
+    Data**](https://ec.europa.eu/eurostat/databrowser/view/namq_10_gdp__custom_16967648/default/table?lang=en)
+    (estat_namq_10_gdp_filtered_en-3.csv):
+
+-   Source: Eurostat – National Accounts
+-   Coverage: EU countries, quarterly data for years 2021-2024 →
+    quarterly data for years 2021-2024 transformed to annual means
+-   Selected variables: geo, TIME_PERIOD, OBS_VALUE
+-   Key variable: contribution to GDP growth in percentage point change
+    compared to same period in previous year
+
+5.  [**EU AI Adoption
+    Data**](https://ec.europa.eu/eurostat/databrowser/view/isoc_eb_ain2__custom_16968355/default/table?lang=en)
+    (estat_isoc_eb_ain2_filtered_en-6.csv):
+
+-   Source: Eurostat – Information Society Statistics
+
+-   Coverage: 27 EU countries, annual data for years 2021-2024, 9
+    sectors, 2 information society indicators (actually 3 but 2 were
+    combined into 1 – description below)
+
+-   Selected variables: nace_r2, indic_is, geo, TIME_PERIOD, OBS_VALUE
+
+-   Key variable: percentage of enterprises
+
+-   Information society indicators E_AI_PANY (data only for 2021) and
+    E_AI_1PANY (data only for 2023-2024) combined into 1 variable
+    E_AI_PANY (due to majority of the same purposes **covered by both
+    indicators**; the rest indicators which are not included in the
+    other dataset contain data in the periods as E_AI_PANY or
+    E_AI_1PANY):
+
+    -   E_AI_PANY – enterprises using AI technologies for at least one
+        of the purposes:
+
+    1.  **E_AI_PMS – marketing or sales**
+    2.  **E_AI_PPP – production processes**
+    3.  **E_AI_PBA – for organisation of business administration
+        processes**
+    4.  **E_AI_PME – for management of enterprises**
+    5.  **E_AI_PLOG – logistics**
+    6.  **E_AI_PITS – ICT security**
+    7.  E_AI_PHR – for human resources management or recruiting
+
+    -   E_AI_1PANY – enterprises using AI technologies for at least one
+        of the purposes:
+
+    1.  **E_AI_PMS – marketing or sales**
+    2.  **E_AI_PPP – production processes**
+    3.  **E_AI_PBAM – organisation of business administration processes
+        or management**
+    4.  **E_AI_PLOG – logistics**
+    5.  **E_AI_PITS – ICT security**
+    6.  E_AI_PFIN – accounting, controlling or finance management
+    7.  E_AI_PRDI – research and development (R&D) or innovation
+        activity
+
+-   E_AI_TANY – enterprises use at least one of the AI technologies:
+
+    -   AI_TTM – performing analysis of written language (text mining)
+    -   AI_TSR – converting spoken language into machine-readable format
+        (speech recognition)
+    -   AI_TNLG – generating written or spoken language (natural
+        language generation)
+    -   AI_TIR – identifying objects or persons based on images (image
+        recognition, image processing)
+    -   AI_TML – use machine learning (e.g. deep learning) for data
+        analysis
+    -   AI_TPA – use AI technologies automating different workflows or
+        assisting in decision making (AI based software robotic process
+        automation)
+    -   AI_TAR – use AI technologies enabling physical movement of
+        machines via autonomous decisions based on observation of
+        surroundings (autonomous robots, self-driving vehicles,
+        autonomous drones)
+
+### Processing Steps Applied
+
+1.  Time alignment – restricted analysis to 2021-2024 period where all
+    datasets overlap
+2.  Country matching – excluded non-EU countries from AI hiring data
+3.  Calculate mean of 2021 and 2023 values for missing AI adoption data
+    for 2022
+4.  Adding mean for each indicator_sector variable
+5.  Join all tables to cover 27 EU countries, annual 2021-2024 dataset
+
+```{r echo=FALSE}
+{setwd('/Users/anna/Data Science and Business Analytics/2-03. Advanced Econometrics/PROJECT/DATA/DATA/AE_project_Kędzierska-Głodek')}
+```
+
+```{r include=FALSE}
+requiredPackages = c('plm', 'ggplot2', 'stargazer', 'countrycode', 'sandwich', 'car', 'lmtest', 'tidyverse', 'gridExtra', 'countrycode', 'lubridate', 'dplyr', 'tidyr', 'purrr', 'stringr', 'readr', 'zoo', 'AER', 'mice', 'clubSandwich', 'viridis')
+```
+
+```{r include=FALSE}
+for(i in requiredPackages){if(!require(i,character.only = TRUE)) install.packages(i)}
+for(i in requiredPackages){if(!require(i,character.only = TRUE)) library(i,character.only = TRUE) }
+```
+
+#### AI hiring data
+
+```{r echo=FALSE}
+ai_hiring_raw <- read.csv("data.csv")
+
+cat("AI Hiring - Original dimensions:", nrow(ai_hiring_raw), "rows,", ncol(ai_hiring_raw), "columns\n")
+```
+
+```{r echo=FALSE}
+ai_hiring <- ai_hiring_raw %>%
+  mutate(
+    year = floor(ref_date / 100),
+    month = ref_date %% 100
+  ) %>%
+  filter(year >= 2021 & year <= 2024) %>%
+  group_by(Country, year) %>%
+  summarise(
+    ai_hiring_index = mean(Relative_AI_hiring_index_pct, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    country = case_when(
+      Country == "AT" ~ "Austria",
+      Country == "BE" ~ "Belgium",
+      Country == "BG" ~ "Bulgaria",
+      Country == "CY" ~ "Cyprus",
+      Country == "CZ" ~ "Czechia",
+      Country == "DE" ~ "Germany",
+      Country == "DK" ~ "Denmark",
+      Country == "EE" ~ "Estonia",
+      Country == "ES" ~ "Spain",
+      Country == "FI" ~ "Finland",
+      Country == "FR" ~ "France",
+      Country == "GR" ~ "Greece",
+      Country == "HR" ~ "Croatia",
+      Country == "HU" ~ "Hungary",
+      Country == "IE" ~ "Ireland",
+      Country == "IT" ~ "Italy",
+      Country == "LT" ~ "Lithuania",
+      Country == "LU" ~ "Luxembourg",
+      Country == "LV" ~ "Latvia",
+      Country == "MT" ~ "Malta",
+      Country == "NL" ~ "Netherlands",
+      Country == "PL" ~ "Poland",
+      Country == "PT" ~ "Portugal",
+      Country == "RO" ~ "Romania",
+      Country == "SE" ~ "Sweden",
+      Country == "SI" ~ "Slovenia",
+      Country == "SK" ~ "Slovakia",
+      TRUE ~ NA_character_ # NA for unmatched country
+    )
+  ) %>%
+  filter(!is.na(country)) %>%
+  select(country, year, ai_hiring_index)
+
+cat("AI Hiring - Preprocessed dimensions:", nrow(ai_hiring), "rows,", ncol(ai_hiring), "columns\n")
+
+#head(ai_hiring)
+ai_hiring
+
+cat("Unique countries in AI Hiring dataset:", length(unique(ai_hiring$country)), "\n")
+```
+
+#### Employment data
+
+```{r echo=FALSE}
+employment_raw <- read.csv("estat_lfsi_emp_a_filtered_en.csv")
+
+cat("Employment - Original dimensions:", nrow(employment_raw), "rows,", ncol(employment_raw), "columns\n")
+```
+
+```{r echo=FALSE}
+employment <- employment_raw %>%
+  filter(
+    TIME_PERIOD >= 2021 & TIME_PERIOD <= 2024,
+    !is.na(OBS_VALUE)
+  ) %>%
+  select(
+    country = geo,
+    year = TIME_PERIOD,
+    sex,
+    employment_rate = OBS_VALUE
+  ) %>%
+  pivot_wider(
+    names_from = sex,
+    values_from = employment_rate,
+    names_prefix = "emp_rate_"
+  ) %>%
+  rename(
+    emp_rate_female = `emp_rate_Females`,
+    emp_rate_male = `emp_rate_Males`
+  ) %>%
+  mutate(
+    emp_gender_gap = emp_rate_male - emp_rate_female
+  )
+
+cat("Employment - Preprocessed dimensions:", nrow(employment), "rows,", ncol(employment), "columns\n")
+
+#head(employment)
+
+employment
+
+cat("Unique countries in employment dataset:", length(unique(employment$country)), "\n")
+```
+
+#### Labour productivity per hour worked
+
+```{r echo=FALSE}
+productivity_raw <- read.csv("estat_nama_10_lp_a21_filtered_en.csv")
+cat("Productivity - Original dimensions:", nrow(productivity_raw), "rows,", ncol(productivity_raw), "columns\n")
+```
+
+```{r echo=FALSE}
+productivity <- productivity_raw %>%
+  select(nace_r2, geo, TIME_PERIOD, OBS_VALUE) %>%
+  group_by(nace_r2, geo) %>%
+  arrange(TIME_PERIOD) %>%
+  complete(TIME_PERIOD = 2021:2024) %>%
+  ungroup() %>%
+  mutate(
+    country = case_when(
+      geo == "AT" ~ "Austria",
+      geo == "BE" ~ "Belgium",
+      geo == "BG" ~ "Bulgaria",
+      geo == "CY" ~ "Cyprus",
+      geo == "CZ" ~ "Czechia",
+      geo == "DE" ~ "Germany",
+      geo == "DK" ~ "Denmark",
+      geo == "EE" ~ "Estonia",
+      geo == "ES" ~ "Spain",
+      geo == "FI" ~ "Finland",
+      geo == "FR" ~ "France",
+      geo == "EL" ~ "Greece",
+      geo == "HR" ~ "Croatia",
+      geo == "HU" ~ "Hungary",
+      geo == "IE" ~ "Ireland",
+      geo == "IT" ~ "Italy",
+      geo == "LT" ~ "Lithuania",
+      geo == "LU" ~ "Luxembourg",
+      geo == "LV" ~ "Latvia",
+      geo == "MT" ~ "Malta",
+      geo == "NL" ~ "Netherlands",
+      geo == "PL" ~ "Poland",
+      geo == "PT" ~ "Portugal",
+      geo == "RO" ~ "Romania",
+      geo == "SE" ~ "Sweden",
+      geo == "SI" ~ "Slovenia",
+      geo == "SK" ~ "Slovakia",
+      TRUE ~ NA_character_
+    ),
+    nace = paste0("pc_", nace_r2) # pc - productivity change
+  ) %>%
+  select(country, year = TIME_PERIOD, nace, productivity_change = OBS_VALUE) %>%
+  filter(!is.na(nace)) %>%
+  pivot_wider(
+    names_from   = nace,
+    values_from  = productivity_change
+  ) %>%
+  select(country, year, everything())
+
+cat("Productivity - Preprocessed dimensions:", nrow(productivity), "rows,", ncol(productivity), "columns\n")
+
+#head(productivity)
+
+productivity
+
+cat("Unique countries in productivity dataset:", length(unique(productivity$country)), "\n")
+```
+
+#### GDP data
+
+```{r echo=FALSE}
+gdp_raw <- read.csv("estat_namq_10_gdp_filtered_en-3.csv")
+cat("GDP - Original dimensions:", nrow(gdp_raw), "rows,", ncol(gdp_raw), "columns\n")
+#cat("Unique countries in gdp_raw dataset:", length(unique(gdp_raw$geo)), "\n")
+```
+
+```{r echo=FALSE}
+gdp <- gdp_raw %>%
+  mutate(year = as.numeric(substr(TIME_PERIOD, 1, 4))) %>%
+  filter(
+    year >= 2021 & year <= 2024,
+    na_item == "Gross domestic product at market prices"
+  ) %>%
+  group_by(geo, year) %>%
+  summarise(
+    gdp_growth = mean(OBS_VALUE, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  rename(country = geo)
+
+cat("GDP - Preprocessed dimensions:", nrow(gdp), "rows,", ncol(gdp), "columns\n")
+#head(gdp)
+gdp
+cat("Unique countries in gdp dataset:", length(unique(gdp$country)), "\n")
+```
+
+#### AI adoption data
+
+```{r echo=FALSE}
+ai_adoption_raw <- read.csv("estat_isoc_eb_ain2_filtered_en-6.csv")
+cat("AI Adoption - Original dimensions:", nrow(ai_adoption_raw), "rows,", ncol(ai_adoption_raw), "columns\n")
+#cat("Unique countries in ai_adoption_raw dataset:", length(unique(ai_adoption_raw$geo)), "\n")
+```
+
+```{r echo=FALSE}
+ai_adoption <- ai_adoption_raw %>%
+  mutate(year = as.integer(TIME_PERIOD)) %>%
+  select(nace_r2, geo, indic_is, TIME_PERIOD, OBS_VALUE) %>%
+  mutate(indic_is = str_replace_all(indic_is, "AI_P1ANY", "AI_PANY")) %>%
+  mutate(indic_is = str_remove(indic_is, "^E_")) %>%
+  group_by(nace_r2, geo, indic_is) %>%
+  arrange(TIME_PERIOD) %>%
+  complete(TIME_PERIOD = 2021:2024) %>%
+  mutate(
+    OBS_VALUE = case_when(
+      TIME_PERIOD == 2022 & is.na(OBS_VALUE) ~
+        (OBS_VALUE[TIME_PERIOD == 2021] + OBS_VALUE[TIME_PERIOD == 2023]) / 2,
+      TRUE ~ OBS_VALUE
+    )
+  ) %>%
+  mutate(
+    country = case_when(
+      geo == "AT" ~ "Austria",
+      geo == "BE" ~ "Belgium",
+      geo == "BG" ~ "Bulgaria",
+      geo == "CY" ~ "Cyprus",
+      geo == "CZ" ~ "Czechia",
+      geo == "DE" ~ "Germany",
+      geo == "DK" ~ "Denmark",
+      geo == "EE" ~ "Estonia",
+      geo == "ES" ~ "Spain",
+      geo == "FI" ~ "Finland",
+      geo == "FR" ~ "France",
+      geo == "EL" ~ "Greece",
+      geo == "HR" ~ "Croatia",
+      geo == "HU" ~ "Hungary",
+      geo == "IE" ~ "Ireland",
+      geo == "IT" ~ "Italy",
+      geo == "LT" ~ "Lithuania",
+      geo == "LU" ~ "Luxembourg",
+      geo == "LV" ~ "Latvia",
+      geo == "MT" ~ "Malta",
+      geo == "NL" ~ "Netherlands",
+      geo == "PL" ~ "Poland",
+      geo == "PT" ~ "Portugal",
+      geo == "RO" ~ "Romania",
+      geo == "SE" ~ "Sweden",
+      geo == "SI" ~ "Slovenia",
+      geo == "SK" ~ "Slovakia",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  ungroup() %>%
+  select(country, TIME_PERIOD, nace_r2, indic_is, OBS_VALUE) %>%
+  filter(!is.na(nace_r2)) %>%
+  pivot_wider(
+    names_from   = c(indic_is, nace_r2),
+    values_from  = OBS_VALUE,
+    names_sep    = "_"
+  ) %>%
+  rename(year = TIME_PERIOD) %>%
+  select(country, year, everything())
+
+cat("AI Adoption - Preprocessed dimensions:", nrow(ai_adoption), "rows,", ncol(ai_adoption), "columns\n")
+#head(ai_adoption)
+ai_adoption
+cat("Unique countries in ai_adoption dataset:", length(unique(ai_adoption$country)), "\n")
+```
+
+## Panel Structure
+
+This chapter provides the overview of panel dataset and includes
+visualizations to illustrate key aspects of the data. Table 4.2-1
+describe structure of dataset, which covers 27 EU countries over four
+years, from 2021 to 2024. The dataset comprises 108 total observations.
+The analysis includes data for 9 sectors represented by 2 indicators:
+E_AI_PANY and E_AI_TANY. The dataset also incorporates other variables
+such as Productivity in sectors, GDP growth, AI_PANY_MEAN, and
+AI_TANY_MEAN. In total, there are 41 variables in the dataset (Table
+4.2-2). The data completeness stands at 91.1%, with 4034 valid
+observations out of 4428 total, indicating 394 missing values (Table
+4.2-3), which results in an unbalanced panel.
+
+```{r include=FALSE}
+panel_data <- employment %>%
+  left_join(ai_hiring, by = c("country", "year")) %>%
+  full_join(ai_adoption, by = c("country", "year")) %>%
+  full_join(productivity, by = c("country", "year")) %>%
+  full_join(gdp, by = c("country", "year"))
+
+cat("Final panel dataset dimensions:", nrow(panel_data), "rows,", ncol(panel_data), "columns\n",
+    "Countries:", length(unique(panel_data$country)), "\n",
+    "Years:", paste(sort(unique(panel_data$year)), collapse = ", "), "\n",
+    "Observations by year: ", table(panel_data$year))
+
+# Change names of columns to lower case
+panel_data <- panel_data %>%
+  rename_with(tolower)
+
+panel_data$year <- as.numeric(panel_data$year) 
+
+# Create mean variables
+panel_data <- panel_data %>%
+  group_by(year, country) %>%
+  rowwise() %>%
+  mutate(ai_pany_mean = mean(c_across(starts_with("ai_pany")), na.rm = TRUE)) %>%
+  ungroup()
+
+panel_data <- panel_data %>%
+  group_by(year, country) %>%
+  rowwise() %>%
+  mutate(ai_tany_mean = mean(c_across(starts_with("ai_tany")), na.rm = TRUE)) %>%
+  ungroup()
+
+# Convert year to character
+panel_data$year <- as.character(panel_data$year) 
+
+# Number of variables in panel_data (excluding the country and year columns)
+cat("Number of variables in panel_data:", ncol(panel_data) - 2, "\n")
+
+### Save panel dataset --------
+write.csv(panel_data, "panel_data.csv", row.names = FALSE)
+
+panel <- as.data.frame(panel_data)
+
+missing_summary <- panel %>%
+  summarise(across(everything(), ~ sum(is.na(.)))) %>%
+  pivot_longer(cols = everything(), names_to = "variable", values_to = "missing_count") %>%
+  filter(missing_count > 0)
+
+# Total number of observations in panel_data
+observations <- nrow(panel)
+cat("Total observations in panel_data:", observations, "\n")
+# Total number of data in panel_data
+total_data <- nrow(panel)*(ncol(panel) - 2)
+cat("Total data in panel_data:", total_data, "\n")
+# Total number of valid observations (non-missing)
+valid_data <- total_data - sum(missing_summary$missing_count)
+cat("Valid data in panel_data:", valid_data, "\n")
+# Percentage of valid data
+valid_percentage <- (valid_data / total_data) * 100
+cat("Percentage of valid data in panel_data:", round(valid_percentage, 2), "%\n")
+```
+
++--------------+-------------------------------------------------------+
+| Attribute    | Details                                               |
++==============+=======================================================+
+| **Total      | 108                                                   |
+| Ob           |                                                       |
+| servations** |                                                       |
++--------------+-------------------------------------------------------+
+| *            | 27 EU countries: AT, BE, BG, CY, CZ, DE, DK, EE, EL,  |
+| *Countries** | ES, FI, FR, HR, HU, IE, IT, LT, LU, LV, MT, NL, PL,   |
+|              | PT, RO, SE, SI, SK                                    |
++--------------+-------------------------------------------------------+
+| **Time       | 2021-2024 (4 years)                                   |
+| Coverage**   |                                                       |
++--------------+-------------------------------------------------------+
+| **Sectors**  | 9 sectors:                                            |
+|              |                                                       |
+| **(NACE Rev. | -   C: Manufacturing                                  |
+| 2)**         | -   E: Water supply; sewerage, waste management       |
+|              | -   F: Construction                                   |
+|              | -   G: Wholesale and retail trade                     |
+|              | -   H: Transportation and storage                     |
+|              | -   I: Accommodation and food service activities      |
+|              | -   J: Information and communication                  |
+|              | -   M: Professional, scientific and technical         |
+|              |     activities                                        |
+|              | -   N: Administrative and support service activities  |
++--------------+-------------------------------------------------------+
+| **           | 2 indicators:                                         |
+| Indicators** |                                                       |
+|              | -   E_AI_PANY                                         |
+|              | -   E_AI_TANY                                         |
++--------------+-------------------------------------------------------+
+| **Additional | Productivity in sectors, GDP growth, AI_PANY_MEAN,    |
+| variables**  | AI_TANY_MEAN                                          |
++--------------+-------------------------------------------------------+
+| **Number of  | 41                                                    |
+| variables**  |                                                       |
++--------------+-------------------------------------------------------+
+| **Data       | 91.1% (4034 valid / 4428 total; 394 missing) –        |
+| Co           | unbalanced                                            |
+| mpleteness** |                                                       |
++--------------+-------------------------------------------------------+
+
+: TABLE 4.2-1 PANEL STRUCTURE
+
+TABLE 4.2-2 Panel Data Statistics
+
+```{r echo=FALSE}
+stargazer(panel, type = "text")
+```
+
+TABLE 4.2-3 Missing Data Summary
+
+```{r echo=FALSE}
+stargazer(missing_summary, type = "text", summary = FALSE, title = "Missing Data Summary")
+```
+
+### Visualisations
+
+Figure 1 illustrates average total employment rate by country from
+2021-2024. On the Figure 2 we can see gender gap and on Figure 3 average
+employment rates: total and by gender for each year from panel dataset.
+
+FIGURE 1 Average Total Employment Rate by Country (2021-2024)
+
+```{r echo=FALSE}
+emp_by_country_plot <- panel %>%
+  filter(!is.na(emp_rate_total)) %>%
+  group_by(country) %>%
+  summarise(avg_emp = mean(emp_rate_total, na.rm = TRUE)) %>%
+  arrange(desc(avg_emp)) %>%
+  mutate(country = factor(country, levels = country)) %>%
+  ggplot(aes(x = country, y = avg_emp, fill = avg_emp)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  scale_fill_viridis_c(option = "viridis") +
+  labs(title = "Average Total Employment Rate by Country (2021-2024)",
+       x = "", y = "Employment Rate (%)",
+       fill = "Rate %") +
+  theme_minimal() +
+  theme(legend.position = "right")
+
+print(emp_by_country_plot)
+ggsave("emp_by_country_plot.png", emp_by_country_plot, width = 10, height = 8, dpi = 300)
+```
+
+FIGURE 2 Average Gender Employment Gap by Country (2021-2024)
+
+```{r echo=FALSE}
+gender_gap_plot <- panel %>%
+  filter(!is.na(emp_gender_gap)) %>%
+  group_by(country) %>%
+  summarise(avg_gap = mean(emp_gender_gap, na.rm = TRUE)) %>%
+  arrange(desc(avg_gap)) %>%
+  mutate(country = factor(country, levels = country)) %>%
+  ggplot(aes(x = country, y = avg_gap, fill = avg_gap)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  scale_fill_viridis_c(option = "plasma") +
+  labs(title = "Average Gender Employment Gap by Country (2021-2024)",
+       x = "", y = "Employment Gap (Male - Female) %",
+       fill = "Gap %") +
+  theme_minimal() +
+  theme(legend.position = "right")
+
+print(gender_gap_plot)
+ggsave("gender_gap_plot.png", gender_gap_plot, width = 10, height = 8, dpi = 300)
+```
+
+FIGURE 3 Average Employment Rates by Gender (2021-2024)
+
+```{r echo=FALSE}
+emp_gender_plot <- panel %>%
+  select(country, year, emp_rate_female, emp_rate_male, emp_rate_total) %>%
+  pivot_longer(cols = c(emp_rate_female, emp_rate_male, emp_rate_total),
+               names_to = "type", values_to = "rate") %>%
+  mutate(type = case_when(
+    type == "emp_rate_female" ~ "Female",
+    type == "emp_rate_male" ~ "Male",
+    type == "emp_rate_total" ~ "Total"
+  )) %>%
+  group_by(year, type) %>%
+  summarise(
+    mean_rate = mean(rate, na.rm = TRUE),
+    se = sd(rate, na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = year, y = mean_rate, color = type, group = type)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymin = mean_rate - se, ymax = mean_rate + se), width = 0.1) +
+  labs(title = "Average Employment Rates by Gender (2021-2024)",
+       x = "Year", y = "Employment Rate (%)",
+       color = "Gender") +
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  scale_color_viridis_d()
+
+print(emp_gender_plot)
+ggsave("emp_gender_plot.png", emp_gender_plot, width = 10, height = 6, dpi = 300)
+```
+
+On the Figure 4 there is average hiring index for each year. While to
+2023 it was dropping, it grew in 2024.
+
+FIGURE 4 Average AI Hiring Index by Year
+
+```{r echo=FALSE}
+ai_hiring_by_year <- panel %>%
+  filter(!is.na(ai_hiring_index)) %>%
+  group_by(year) %>%
+  summarise(
+    avg_ai_hiring = mean(ai_hiring_index, na.rm = TRUE),
+    se = sd(ai_hiring_index, na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = year, y = avg_ai_hiring, fill = year)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Average AI Hiring Index by Year",
+       x = "Year", y = "Average AI Hiring Index") +
+  theme_minimal() +
+  scale_fill_viridis_d() +
+  theme(legend.position = "none")
+
+print(ai_hiring_by_year)
+ggsave("ai_hiring_by_year.png", ai_hiring_by_year, width = 8, height = 6, dpi = 300)
+```
+
+Figure 5 depict average AI adoption rates for both indicators: PANY and
+TANY. Both rates grow over time.
+
+FIGURE 5 Average AI Adoption: PANY vs TANY
+
+```{r echo=FALSE}
+ai_adoption_pattern <- panel %>%
+  select(country, year, starts_with("ai_pany_"), starts_with("ai_tany_")) %>%
+  pivot_longer(cols = -c(country, year), names_to = "variable", values_to = "value") %>%
+  mutate(
+    type = ifelse(grepl("pany", variable), "PANY", "TANY"),
+    sector = sub("ai_[pt]any_", "", variable)
+  ) %>%
+  filter(!is.na(value)) %>%
+  group_by(year, type) %>%
+  summarise(avg_adoption = mean(value, na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(x = year, y = avg_adoption, fill = type, group = type)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Average AI Adoption: PANY vs TANY",
+       x = "Year", y = "Average Adoption Rate (%)",
+       fill = "Type") +
+  theme_minimal() +
+  scale_fill_viridis_d()
+
+print(ai_adoption_pattern)
+ggsave("ai_adoption_pattern.png", ai_adoption_pattern, width = 8, height = 6, dpi = 300)
+```
+
+On the last figures 6 and 7 there are presented average AI adoption
+rates in enterprises by sectors. As we can see the highest rates occur
+for sectors J: information and communication, and N: administrative and
+support service activities. The lowest rates are noted for sectors F:
+construction, and I: accommodation and food service activities.
+
+FIGURE 6 Average AI Adoption (PANY) by Sector
+
+```{r echo=FALSE}
+ai_sector_adoption <- panel %>%
+  select(year, starts_with("ai_pany_")) %>%
+  pivot_longer(cols = -year, names_to = "sector", values_to = "value") %>%
+  mutate(sector = sub("ai_pany_", "", sector)) %>%
+  filter(!is.na(value)) %>%
+  group_by(sector) %>%
+  summarise(avg_adoption = mean(value, na.rm = TRUE)) %>%
+  arrange(desc(avg_adoption)) %>%
+  mutate(sector = factor(sector, levels = sector)) %>%
+  ggplot(aes(x = sector, y = avg_adoption, fill = avg_adoption)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Average AI Adoption (PANY) by Sector",
+       x = "Sector", y = "Average Adoption Rate (%)") +
+  theme_minimal() +
+  scale_fill_viridis_c() +
+  theme(legend.position = "none")
+
+print(ai_sector_adoption)
+ggsave("ai_sector_adoption.png", ai_sector_adoption, width = 10, height = 6, dpi = 300)
+```
+
+FIGURE 7 Average AI Adoption (TANY) by Sector
+
+```{r echo=FALSE}
+ai_sector_adoption2 <- panel %>%
+  select(year, starts_with("ai_tany_")) %>%
+  pivot_longer(cols = -year, names_to = "sector", values_to = "value") %>%
+  mutate(sector = sub("ai_tany_", "", sector)) %>%
+  filter(!is.na(value)) %>%
+  group_by(sector) %>%
+  summarise(avg_adoption = mean(value, na.rm = TRUE)) %>%
+  arrange(desc(avg_adoption)) %>%
+  mutate(sector = factor(sector, levels = sector)) %>%
+  ggplot(aes(x = sector, y = avg_adoption, fill = avg_adoption)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Average AI Adoption (TANY) by Sector",
+       x = "Sector", y = "Average Adoption Rate (%)") +
+  theme_minimal() +
+  scale_fill_viridis_c() +
+  theme(legend.position = "none")
+
+print(ai_sector_adoption2)
+ggsave("ai_sector_adoption2.png", ai_sector_adoption2, width = 10, height = 6, dpi = 300)
+```
+
+# Method/Model
+
+This chapter describes all steps performed during the analysis of panel
+dataset.
+
+1.  **General to specific approach** was performed starting with a
+    comprehensive specification that includes all potential predictors.
+2.  **Model selection through sequential elimination** was performed.
+    This process is based on Wald tests, which are used to ensure the
+    validity of restrictions at each step of variable removal.
+3.  **Hypothesis testing** with different models were tested for both
+    the Main Hypothesis (H1) and the Secondary Hypothesis (H2).
+    -   For Main Hypothesis (H1), which posits that higher AI adoption
+        leads to increased employment rates in the 20-64 age group,
+        various models (Model 1 to Model 6) were evaluated, including
+        different combinations of AI adoption indicators (e.g.,
+        ai_pany_sectors, ai_tany_sectors) and their interactions with
+        the ai_hiring_index.
+    -   For Secondary Hypothesis (H2), which suggests gender-specific
+        employment effects with a stronger positive impact on female
+        employment, models were specifically run with emp_rate_female
+        and emp_rate_male as dependent variables, incorporating AI
+        adoption indicators based on purpose (ai_pany_sectors) and
+        technology (ai_tany_sectors).
+4.  **Hausman tests** were performed to determine the appropriate
+    estimator for the panel data, specifically to choose between random
+    effects (RE) or fixed effects (FE) models.
+5.  **Diagnostic tests** were performed for the final models:
+    -   F-test for individual effects (FE vs Pooled): used to determine
+        if panel effects exist.
+    -   Breusch-Pagan test (RE vs Pooled): used to determine if random
+        effects exist.
+    -   Breusch-Godfrey/Wooldridge test: used to check for
+        autocorrelation in the residuals.
+    -   Studentized Breusch-Pagan test: used to check for
+        heteroskedasticity in the residuals.
+    -   Pesaran CD test: used to assess cross-sectional dependence, with
+        robust standard errors applied (clustered) when dependence was
+        present.
+6.  **Variable significance** selection process identified insignificant
+    variables at both 5% and 10% significance levels and their potential
+    removal based on Wald tests.
+
+The analysis aimed to progress from more general to specific models,
+ensuring that only statistically significant predictors were retained.
+
+# Results
+
+The analysis of AI adoption's effects on employment and economic output
+in the EU presents detailed results for both the main and secondary
+hypotheses, derived through a general-to-specific modelling approach.
+The general model includes AI adoption rate in all sectors and
+interactions of mean from all sectoral AI adoption rate and AI hiring
+index. Systematic variable elimination was validated by Wald tests and
+lead to preferred specification, which retains only statistically
+significant variables.
+
+## Main Hypothesis (H1)
+
+```{r include=FALSE}
+# H1:
+models_list <- list(
+  emp_rate_total ~ ai_hiring_index + ai_pany_c + ai_pany_e + ai_pany_f + ai_pany_g + ai_pany_h + ai_pany_i + ai_pany_j + ai_pany_m + ai_pany_n + ai_pany_mean:ai_hiring_index,
+  emp_rate_total ~ ai_pany_c + ai_pany_e + ai_pany_f + ai_pany_g + ai_pany_h + ai_pany_i + ai_pany_j + ai_pany_m + ai_pany_n + ai_pany_mean:ai_hiring_index,
+  emp_rate_total ~ ai_pany_c + ai_pany_e + ai_pany_g + ai_pany_j + ai_pany_m + ai_pany_n + ai_pany_mean:ai_hiring_index,
+  emp_rate_total ~ ai_hiring_index + ai_tany_c + ai_tany_e + ai_tany_f + ai_tany_g + ai_tany_h + ai_tany_i + ai_tany_j + ai_tany_m + ai_tany_n + ai_tany_mean:ai_hiring_index,
+  emp_rate_total ~ ai_tany_c + ai_tany_e + ai_tany_f + ai_tany_g + ai_tany_h + ai_tany_i + ai_tany_j + ai_tany_m + ai_tany_n + ai_tany_mean:ai_hiring_index,
+  emp_rate_total ~ ai_tany_c + ai_tany_e + ai_tany_g + ai_tany_j + ai_tany_m + ai_tany_n + ai_tany_mean:ai_hiring_index
+)
+model_names <- paste0("Model ", 1:length(models_list))
+```
+
+Across the six models tested for H1 (Model 1 to Model 6), the Hausman
+tests primarily indicated the use of Random Effects (RE) models. Panel
+effects were found to exist across all models, as indicated by a p-value
+= 0 from the F-test for individual effects. Random effects were
+confirmed to exist across all models, with a p-value = 0 from the
+Breusch-Pagan test. Most models (Models 1-4) showed no autocorrelation,
+but Models 5 and 6 indicated the presence of autocorrelation.
+Heteroskedasticity was present in Models 1, 2, 3, and 6, while Model 4
+showed homoskedasticity, and Model 5 was close to homoskedasticity
+(p=0.0505). Because of cross-sectional dependence for all models, robust
+standard errors (clustered) were applied. Process identified
+insignificant variables at 5% and 10% significance levels. However, at
+the first step, ai_hiring_index was eliminated. Next remaining variables
+which were insignificant at 10% were eliminated. Model 3 and 6 have all
+significant variables.
+
+```{r include=FALSE}
+get_dep_var <- function(formula) {
+  as.character(formula[[2]])
+}
+dep_var_name <- get_dep_var(models_list[[1]])
+
+
+n_models <- length(models_list)
+results_list <- list()
+model_types <- character(n_models)
+robust_ses <- list()
+
+
+for (i in 1:n_models) {
+  
+  cat("\n", rep("=", 80), "\n", sep = "")
+  cat("MODEL", i, "ANALYSIS\n")
+  cat(rep("=", 80), "\n\n", sep = "")
+  
+  tested_model <- models_list[[i]]
+  cat("Formula:", deparse(tested_model), "\n\n")
+  
+  ## MODELS ----
+  pooled <- plm(tested_model, data = panel, model = "pooling")
+  fixed <- plm(tested_model, data = panel, index = c("country", "year"), model = "within")
+  random <- plm(tested_model, data = panel, index = c("country", "year"), model = "random")
+  
+  ## 5.1. TEST FOR PANEL EFFECTS ----
+  # Test Fixed Effects vs Pooled OLS
+  pf_test <- pFtest(fixed, pooled)
+  print(pf_test)
+  
+  ### Test Random Effects vs Pooled OLS ----
+  bp_test <- plmtest(pooled, type = "bp")
+  print(bp_test)
+  
+  ## 5.2. MODEL SELECTION ----
+  if (pf_test$p.value > 0.05 & bp_test$p.value > 0.05) {
+    cat("\n[USE POOLED OLS] - No significant panel effects\n")
+    chosen_model <- pooled
+    model_type <- "pooled"
+  } else {
+    cat("\n[Panel effects exist] - check Hausman test\n")
+    
+    ### Hausman Test ----
+    hausman_test <- phtest(fixed, random)
+    print(hausman_test)
+    cat(">>> Hausman test p-value:", round(hausman_test$p.value, 4), "\n")
+    
+    if (hausman_test$p.value < 0.05) {
+      cat("\n[Hausman test significant - USE FIXED EFFECTS]\n")
+      chosen_model <- fixed
+      model_type <- "fe"
+    } else {
+      cat("\n[Hausman test not significant - USE RANDOM EFFECTS]\n")
+      chosen_model <- random
+      model_type <- "re"
+    }
+  }
+  
+  ## 5.3. WALD TEST FOR VARIABLE REMOVAL ----
+  if (i > 1) {
+    cat("\n--- WALD TEST FOR VARIABLE REMOVAL ---\n")
+    
+    # Re-estimate both models with the same method as chosen_model
+    if (model_type == "fe") {
+      model_current <- plm(models_list[[i]], data = panel, model = "within", index = c("country", "year"))
+      model_previous <- plm(models_list[[i-1]], data = panel, model = "within", index = c("country", "year"))
+    } else if (model_type == "re") {
+      model_current <- plm(models_list[[i]], data = panel, model = "random", index = c("country", "year"))
+      model_previous <- plm(models_list[[i-1]], data = panel, model = "random", index = c("country", "year"))
+    } else {
+      model_current <- plm(models_list[[i]], data = panel, model = "pooling")
+      model_previous <- plm(models_list[[i-1]], data = panel, model = "pooling")
+    }
+    
+    # Perform Wald test
+    tryCatch({
+      wald_test <- waldtest(model_previous, model_current)
+      print(wald_test)
+      
+      # Extract p-value
+      p_value <- wald_test$`Pr(>Chisq)`[2]
+      if (is.na(p_value)) p_value <- wald_test$`Pr(>F)`[2]
+      
+      if (!is.na(p_value)) {
+        if (p_value > 0.05) {
+          cat(">>> Variable removal is justified (p =", round(p_value, 4), ")\n")
+        } else {
+          cat(">>> Variable removal may not be justified (p =", round(p_value, 4), ")\n")
+        }
+      }
+    }, error = function(e) {
+      cat(">>> Wald test failed:", e$message, "\n")
+    })
+  } else {
+    cat("\n--- WALD TEST: Not applicable for first model ---\n")
+  }
+  
+  ## 5.4. DIAGNOSTIC TESTS ----
+  cat("\n--- DIAGNOSTIC TESTS ---\n")
+  
+  ### Autocorrelation Test ----
+  if (model_type != "pooled") {
+    serial_test <- pbgtest(chosen_model)
+    print(serial_test)
+    serial_corr <- serial_test$p.value < 0.05
+    if (serial_corr) {
+      cat(">>> Autocorrelation detected (p =", round(serial_test$p.value, 4), ")\n")
+    } else {
+      cat(">>> No autocorrelation (p =", round(serial_test$p.value, 4), ")\n")
+    }
+  } else {
+    ### For pooled OLS, use Durbin-Watson test ----
+    ols_model <- lm(tested_model, data = panel)
+    dw_test <- dwtest(ols_model)
+    print(dw_test)
+    ### DW statistic around 2 = no autocorrelation ----
+    serial_corr <- dw_test$p.value < 0.05
+    if (serial_corr) {
+      cat(">>> Autocorrelation detected (DW =", round(dw_test$statistic, 3), ", p =", round(dw_test$p.value, 4), ")\n")
+    } else {
+      cat(">>> No autocorrelation (DW =", round(dw_test$statistic, 3), ", p =", round(dw_test$p.value, 4), ")\n")
+    }
+  }
+  
+  ### Heteroskedasticity Test ----
+  hetero_test <- bptest(tested_model, data = panel, studentize = TRUE)
+  print(hetero_test)
+  heterosked <- hetero_test$p.value < 0.05
+  if (heterosked) {
+    cat(">>> Heteroskedasticity detected (p =", round(hetero_test$p.value, 4), ")\n")
+  } else {
+    cat(">>> Homoskedasticity (p =", round(hetero_test$p.value, 4), ")\n")
+  }
+  
+  ### Cross-sectional dependence ----
+  if (model_type != "pooled") {
+    cd_test <- pcdtest(chosen_model, test = "cd")
+    print(cd_test)
+    cross_dep <- cd_test$p.value < 0.05
+    if (cross_dep) {
+      cat(">>> Cross-sectional dependence detected (p =", round(cd_test$p.value, 4), ")\n")
+    } else {
+      cat(">>> No cross-sectional dependence (p =", round(cd_test$p.value, 4), ")\n")
+    }
+  } else {
+    cat(">>> Cross-sectional dependence test not applicable for pooled OLS\n")
+    cross_dep <- FALSE
+  }
+  
+  ## 5.4. ROBUST STANDARD ERRORS ----
+  cat("\n--- ROBUST STANDARD ERRORS ---\n")
+  
+  if (!serial_corr & !heterosked & !cross_dep) {
+    cat(">>> No corrections needed - use regular SEs\n")
+    final_results <- summary(chosen_model)
+    robust_se <- NULL
+    
+  } else if (heterosked & !serial_corr & !cross_dep) {
+    cat(">>> Heteroskedasticity only - use White robust SEs\n")
+    final_results <- coeftest(chosen_model, 
+                              vcov. = vcovHC(chosen_model, method = "white1", type = "HC0"))
+    robust_se <- sqrt(diag(vcovHC(chosen_model, method = "white1", type = "HC0")))
+    
+  } else if ((serial_corr | heterosked) & !cross_dep) {
+    cat(">>> Autocorrelation and/or heteroskedasticity - use HAC robust SEs\n")
+    if (model_type == "fe") {
+      final_results <- coeftest(chosen_model, 
+                                vcov. = vcovHC(chosen_model, method = "arellano", type = "HC1"))
+      robust_se <- sqrt(diag(vcovHC(chosen_model, method = "arellano", type = "HC1")))
+    } else {
+      final_results <- coeftest(chosen_model, 
+                                vcov. = vcovHC(chosen_model, method = "white1", type = "HC0"))
+      robust_se <- sqrt(diag(vcovHC(chosen_model, method = "white1", type = "HC0")))
+    }
+    
+  } else if (cross_dep) {
+    cat(">>> Cross-sectional dependence - use clustered robust SEs\n")
+    final_results <- coeftest(chosen_model, 
+                              vcov. = vcovHC(chosen_model, method = "white1", type = "HC0", cluster = "group"))
+    robust_se <- sqrt(diag(vcovHC(chosen_model, method = "white1", type = "HC0", cluster = "group")))
+  }
+  
+  print(final_results)
+  
+  
+  ## 5.5. IDENTIFY INSIGNIFICANT VARIABLES ----
+  cat("\n--- CHECKING VARIABLE SIGNIFICANCE ---\n")
+  if (is.matrix(final_results)) {
+    p_values <- final_results[, "Pr(>|t|)"]
+  } else {
+    p_values <- summary(chosen_model)$coefficients[, "Pr(>|t|)"]
+  }
+  
+  insignificant_vars <- names(p_values)[p_values > 0.05 & names(p_values) != "(Intercept)"]
+  if (length(insignificant_vars) > 0) {
+    cat(">>> Not significant at 5% level:", paste(insignificant_vars, collapse = ", "), "\n")
+  } else {
+    cat(">>> All variables are significant at 5% level\n")
+  }
+  
+  ### Save results
+  results_list[[i]] <- chosen_model
+  model_types[i] <- model_type
+  robust_ses[[i]] <- robust_se
+}
+
+## 5.6. SUMMARY OF ALL TESTS ----
+cat("--- SUMMARY OF DIAGNOSTIC TESTS FOR ALL MODELS ---\n")
+
+test_rows <- c("Formula", 
+               "Model Type",
+               "F-test for individual effects (FE vs Pooled)", "  Interpretation",
+               "Breusch-Pagan test (RE vs Pooled)", "  Interpretation",
+               "Hausman test (RE vs FE)", "  Interpretation",
+               "Wald test for variable removal", "  Interpretation",
+               "Breusch-Godfrey/Wooldridge test (Serial Correlation)", "  Interpretation",
+               "Studentized Breusch-Pagan test (Heteroskedasticity)", "  Interpretation",
+               "Pesaran CD test (Cross-sectional Dependence)", "  Interpretation",
+               "Insignificant variables (5%)",
+               "Insignificant variables (10%)")
+
+test_results_matrix <- matrix("", nrow = length(test_rows), ncol = n_models)
+rownames(test_results_matrix) <- test_rows
+colnames(test_results_matrix) <- model_names
+
+wald_results <- list()
+
+for (i in 1:n_models) {
+  
+  #### Formula ----
+  formula_str <- paste(deparse(models_list[[i]]), collapse = " ")
+  test_results_matrix[1, i] <- formula_str
+  
+  ### Model type ----
+  test_results_matrix[2, i] <- toupper(model_types[i])
+  
+  ### tests p-values ----
+  tested_model <- models_list[[i]]
+  pooled <- plm(tested_model, data = panel, model = "pooling")
+  fixed <- plm(tested_model, data = panel, index = c("country", "year"), model = "within")
+  random <- plm(tested_model, data = panel, index = c("country", "year"), model = "random")
+  
+  ### F test ----
+  pf_test <- pFtest(fixed, pooled)
+  test_results_matrix[3, i] <- sprintf("p = %.4f%s", pf_test$p.value, 
+                                       ifelse(pf_test$p.value < 0.05, "*", ""))
+  test_results_matrix[4, i] <- ifelse(pf_test$p.value < 0.05, 
+                                      "Panel effects exist", 
+                                      "No panel effects")
+  
+  ### BP test ----
+  bp_test <- plmtest(pooled, type = "bp")
+  test_results_matrix[5, i] <- sprintf("p = %.4f%s", bp_test$p.value, 
+                                       ifelse(bp_test$p.value < 0.05, "*", ""))
+  test_results_matrix[6, i] <- ifelse(bp_test$p.value < 0.05, 
+                                      "Random effects exist", 
+                                      "No random effects")
+  
+  ### Hausman test ----
+  if (pf_test$p.value < 0.05 | bp_test$p.value < 0.05) {
+    tryCatch({
+      hausman_test <- phtest(fixed, random)
+      test_results_matrix[7, i] <- sprintf("p = %.4f%s", hausman_test$p.value, 
+                                           ifelse(hausman_test$p.value < 0.05, "*", ""))
+      test_results_matrix[8, i] <- ifelse(hausman_test$p.value < 0.05, 
+                                          "Use Fixed Effects", 
+                                          "Use Random Effects")
+    }, error = function(e) {
+      test_results_matrix[7, i] <- "Failed"
+      test_results_matrix[8, i] <- "Test failed"
+    })
+  } else {
+    test_results_matrix[7, i] <- "N/A"
+    test_results_matrix[8, i] <- "Use Pooled OLS"
+  }
+  
+  ### Wald test ----
+  if (i > 1) {
+    tryCatch({
+      if (model_types[i] == "fe") {
+        model_current <- plm(models_list[[i]], data = panel, model = "within", index = c("country", "year"))
+        model_previous <- plm(models_list[[i-1]], data = panel, model = "within", index = c("country", "year"))
+      } else if (model_types[i] == "re") {
+        model_current <- plm(models_list[[i]], data = panel, model = "random", index = c("country", "year"))
+        model_previous <- plm(models_list[[i-1]], data = panel, model = "random", index = c("country", "year"))
+      } else {
+        model_current <- plm(models_list[[i]], data = panel, model = "pooling")
+        model_previous <- plm(models_list[[i-1]], data = panel, model = "pooling")
+      }
+      
+      wald_test <- waldtest(model_current, model_previous)
+      p_value <- wald_test$`Pr(>Chisq)`[2]
+      if (is.na(p_value)) p_value <- wald_test$`Pr(>F)`[2]
+      
+      test_results_matrix[9, i] <- sprintf("p = %.4f%s", p_value, 
+                                           ifelse(p_value > 0.05, "*", ""))
+      test_results_matrix[10, i] <- ifelse(p_value > 0.05, 
+                                           "Removal justified", 
+                                           "Keep removed vars")
+    }, error = function(e) {
+      test_results_matrix[9, i] <- "Failed"
+      test_results_matrix[10, i] <- "Test failed"
+    })
+  } else {
+    test_results_matrix[9, i] <- "N/A"
+    test_results_matrix[10, i] <- ""
+  }
+  
+  ### Serial correlation ----
+  if (model_types[i] != "pooled") {
+    serial_test <- pbgtest(results_list[[i]])
+    test_results_matrix[11, i] <- sprintf("p = %.4f%s", serial_test$p.value, 
+                                          ifelse(serial_test$p.value < 0.05, "*", ""))
+    test_results_matrix[12, i] <- ifelse(serial_test$p.value < 0.05, 
+                                         "Autocorrelation present", 
+                                         "No autocorrelation")
+  } else {
+    ols_model <- lm(tested_model, data = panel)
+    dw_test <- dwtest(ols_model)
+    test_results_matrix[11, i] <- sprintf("DW = %.2f, p = %.4f%s", 
+                                          dw_test$statistic,
+                                          dw_test$p.value,
+                                          ifelse(dw_test$p.value < 0.05, "*", ""))
+    test_results_matrix[12, i] <- ifelse(dw_test$p.value < 0.05, 
+                                         "Autocorrelation present", 
+                                         "No autocorrelation")
+  }
+  
+  ### Heteroskedasticity ----
+  hetero_test <- bptest(tested_model, data = panel, studentize = TRUE)
+  test_results_matrix[13, i] <- sprintf("p = %.4f%s", hetero_test$p.value, 
+                                        ifelse(hetero_test$p.value < 0.05, "*", ""))
+  test_results_matrix[14, i] <- ifelse(hetero_test$p.value < 0.05, 
+                                       "Heteroskedasticity present", 
+                                       "Homoskedasticity")
+  
+  ### Cross-sectional dependence ----
+  if (model_types[i] != "pooled") {
+    cd_test <- pcdtest(results_list[[i]], test = "cd")
+    test_results_matrix[15, i] <- sprintf("p = %.4f%s", cd_test$p.value, 
+                                          ifelse(cd_test$p.value < 0.05, "*", ""))
+    test_results_matrix[16, i] <- ifelse(cd_test$p.value < 0.05, 
+                                         "Cross-sect. dep. present. Robust SEs applied (Clustered)", 
+                                         "No cross-sect. dep.")
+  } else {
+    test_results_matrix[15, i] <- "N/A"
+    test_results_matrix[16, i] <- "Not applicable"
+  }
+  
+  ### Insignificant variables ----
+  if (!is.null(robust_ses[[i]])) {
+    # results with robust SEs
+    if (model_types[i] == "fe") {
+      coef_test <- coeftest(results_list[[i]], 
+                            vcov. = vcovHC(results_list[[i]], method = "arellano", type = "HC1"))
+    } else {
+      coef_test <- coeftest(results_list[[i]], 
+                            vcov. = vcovHC(results_list[[i]], method = "white1", type = "HC0"))
+    }
+    p_values <- coef_test[, "Pr(>|t|)"]
+  } else {
+    p_values <- summary(results_list[[i]])$coefficients[, "Pr(>|t|)"]
+  }
+  
+  # 5%
+  insignif_5 <- names(p_values)[p_values > 0.05 & names(p_values) != "(Intercept)"]
+  if (length(insignif_5) > 0) {
+    test_results_matrix[17, i] <- paste(insignif_5, collapse = ", ")
+  } else {
+    test_results_matrix[17, i] <- "All significant"
+  }
+  
+  # 10%
+  insignif_10 <- names(p_values)[p_values > 0.10 & names(p_values) != "(Intercept)"]
+  if (length(insignif_10) > 0) {
+    test_results_matrix[18, i] <- paste(insignif_10, collapse = ", ")
+  } else {
+    test_results_matrix[18, i] <- "All significant"
+  }
+}
+
+### *print ----
+print(test_results_matrix, quote = FALSE, right = FALSE)
+```
+
++---------+---------+---------+---------+---------+---------+---------+
+| *       | **M     | **M     | **M     | **M     | **M     | **M     |
+| *Test** | odel1** | odel2** | odel3** | odel4** | odel5** | odel6** |
++=========+=========+=========+=========+=========+=========+=========+
+| **Fo    | emp_rat | emp_rat | emp_rat | emp_rat | emp_rat | emp_rat |
+| rmula** | e_total | e_total | e_total | e_total | e_total | e_total |
+|         | \~      | \~      | \~      | \~      | \~      | \~      |
+|         | **ai_hi | ai_p    | ai_p    | **ai_hi | ai_t    | ai_t    |
+|         | ring_in | any_c + | any_c + | ring_in | any_c + | any_c + |
+|         | dex** + | ai_p    | ai_p    | dex** + | ai_t    | ai_t    |
+|         | ai_p    | any_e + | any_e + | ai_t    | any_e + | any_e + |
+|         | any_c + | *       | ai_p    | any_c + | *       | ai_t    |
+|         | ai_p    | *ai_pan | any_g + | ai_t    | *ai_tan | any_g + |
+|         | any_e + | y_f** + | ai_p    | any_e + | y_f** + | ai_t    |
+|         | ai_p    | ai_p    | any_j + | ai_t    | ai_t    | any_j + |
+|         | any_f + | any_g + | ai_p    | any_f + | any_g + | ai_t    |
+|         | ai_p    | *       | any_m + | ai_t    | *       | any_m + |
+|         | any_g + | *ai_pan | ai_p    | any_g + | *ai_tan | ai_t    |
+|         | ai_p    | y_h** + | any_n + | ai_t    | y_h** + | any_n + |
+|         | any_h + | *       | ai_pany | any_h + | *       | ai_tany |
+|         | ai_p    | *ai_pan | _mean:a | ai_t    | *ai_tan | _mean:a |
+|         | any_i + | y_i** + | i_hirin | any_i + | y_i** + | i_hirin |
+|         | ai_p    | ai_p    | g_index | ai_t    | ai_t    | g_index |
+|         | any_j + | any_j + |         | any_j + | any_j + |         |
+|         | ai_p    | ai_p    |         | ai_t    | ai_t    |         |
+|         | any_m + | any_m + |         | any_m + | any_m + |         |
+|         | ai_p    | ai_p    |         | ai_t    | ai_t    |         |
+|         | any_n + | any_n + |         | any_n + | any_n + |         |
+|         | ai_pany | ai_pany |         | ai_tany | ai_tany |         |
+|         | _mean:a | _mean:a |         | _mean:a | _mean:a |         |
+|         | i_hirin | i_hirin |         | i_hirin | i_hirin |         |
+|         | g_index | g_index |         | g_index | g_index |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **Model | RE      | RE      | RE      | FE      | RE      | RE      |
+| Type**  |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| *       | p =     | p =     | p =     | p =     | p =     | p =     |
+| *F-test | 0       | 0       | 0       | 0       | 0       | 0       |
+| for     | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* |
+| ind     |         |         |         |         |         |         |
+| ividual |         |         |         |         |         |         |
+| effects |         |         |         |         |         |         |
+| FE vs   |         |         |         |         |         |         |
+| P       |         |         |         |         |         |         |
+| ooled** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Panel   | Panel   | Panel   | Panel   | Panel   | Panel   |
+| terpret | effects | effects | effects | effects | effects | effects |
+| ation** | exist   | exist   | exist   | exist   | exist   | exist   |
++---------+---------+---------+---------+---------+---------+---------+
+| *       | p =     | p =     | p =     | p =     | p =     | p =     |
+| *Breusc | 0       | 0       | 0       | 0       | 0       | 0       |
+| h-Pagan | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* |
+| test RE |         |         |         |         |         |         |
+| vs      |         |         |         |         |         |         |
+| P       |         |         |         |         |         |         |
+| ooled** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Random  | Random  | Random  | Random  | Random  | Random  |
+| terpret | effects | effects | effects | effects | effects | effects |
+| ation** | exist   | exist   | exist   | exist   | exist   | exist   |
++---------+---------+---------+---------+---------+---------+---------+
+| **      | p =     | p =     | p =     | p =     | p =     | p =     |
+| Hausman | 0.6490  | 0.4770  | 0.2552  | 0       | 0.9998  | 0.7014  |
+| test RE |         |         |         | .0002\* |         |         |
+| vs FE** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Use     | Use     | Use     | Use     | Use     | Use     |
+| terpret | Random  | Random  | Random  | Fixed   | Random  | Random  |
+| ation** | Effects | Effects | Effects | Effects | Effects | Effects |
++---------+---------+---------+---------+---------+---------+---------+
+| **Wald  |         | p =     | p =     |         | p =     | p =     |
+| test    |         | 0       | 0       |         | 0       | 0       |
+| for     |         | .4108\* | .4108\* |         | .8869\* | .8869\* |
+| v       |         |         |         |         |         |         |
+| ariable |         |         |         |         |         |         |
+| re      |         |         |         |         |         |         |
+| moval** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    |         | Removal | Removal |         | Removal | Removal |
+| terpret |         | ju      | ju      |         | ju      | ju      |
+| ation** |         | stified | stified |         | stified | stified |
++---------+---------+---------+---------+---------+---------+---------+
+| **Breus | p =     | p =     | p =     | p =     | p =     | p =     |
+| ch-Godf | 0.1800  | 0.1913  | 0.1648  | 0.7724  | 0       | 0       |
+| rey/Woo |         |         |         |         | .0213\* | .0352\* |
+| ldridge |         |         |         |         |         |         |
+| test    |         |         |         |         |         |         |
+| Serial  |         |         |         |         |         |         |
+| Correl  |         |         |         |         |         |         |
+| ation** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | No      | No      | No      | No      | A       | A       |
+| terpret | a       | a       | a       | a       | utocorr | utocorr |
+| ation** | utocorr | utocorr | utocorr | utocorr | elation | elation |
+|         | elation | elation | elation | elation | present | present |
++---------+---------+---------+---------+---------+---------+---------+
+| **Stud  | p =     | p =     | p =     | p =     | p =     | p =     |
+| entized | 0       | 0       | 0       | 0.2088  | 0.0505  | 0       |
+| Breusc  | .0482\* | .0114\* | .0230\* |         |         | .0162\* |
+| h-Pagan |         |         |         |         |         |         |
+| test    |         |         |         |         |         |         |
+| Hetero  |         |         |         |         |         |         |
+| skedast |         |         |         |         |         |         |
+| icity** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Hete    | Hete    | Hete    | Ho      | Ho      | Hete    |
+| terpret | roskeda | roskeda | roskeda | moskeda | moskeda | roskeda |
+| ation** | sticity | sticity | sticity | sticity | sticity | sticity |
+|         | present | present | present |         |         | present |
++---------+---------+---------+---------+---------+---------+---------+
+| **      | p =     | p =     | p =     | p =     | p =     | p =     |
+| Pesaran | 0       | 0       | 0       | 0       | 0       | 0       |
+| CD test | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* |
+| C       |         |         |         |         |         |         |
+| ross-se |         |         |         |         |         |         |
+| ctional |         |         |         |         |         |         |
+| Depen   |         |         |         |         |         |         |
+| dence** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Cros    | Cros    | Cros    | Cros    | Cros    | Cros    |
+| terpret | s-sect. | s-sect. | s-sect. | s-sect. | s-sect. | s-sect. |
+| ation** | dep.    | dep.    | dep.    | dep.    | dep.    | dep.    |
+|         | p       | p       | p       | p       | p       | p       |
+|         | resent. | resent. | resent. | resent. | resent. | resent. |
+|         | Robust  | Robust  | Robust  | Robust  | Robust  | Robust  |
+|         | SEs     | SEs     | SEs     | SEs     | SEs     | SEs     |
+|         | applied | applied | applied | applied | applied | applied |
+|         | Cl      | Cl      | Cl      | Cl      | Cl      | Cl      |
+|         | ustered | ustered | ustered | ustered | ustered | ustered |
++---------+---------+---------+---------+---------+---------+---------+
+| *       | ai      | ai_     | All     | ai      | ai_     | ai      |
+| *Insign | _hiring | pany_f, | sign    | _hiring | tany_f, | _tany_n |
+| ificant | _index, | ai_     | ificant | _index, | ai_     |         |
+| va      | ai_     | pany_h, |         | ai_     | tany_g, |         |
+| riables | pany_f, | ai      |         | tany_f, | ai_     |         |
+| 5%**    | ai_     | _pany_i |         | ai_     | tany_h, |         |
+|         | pany_h, |         |         | tany_g, | ai_     |         |
+|         | ai      |         |         | ai_     | tany_i, |         |
+|         | _pany_i |         |         | tany_h, | ai      |         |
+|         |         |         |         | ai_     | _tany_n |         |
+|         |         |         |         | tany_i, |         |         |
+|         |         |         |         | ai_     |         |         |
+|         |         |         |         | tany_n, |         |         |
+|         |         |         |         | ai_hiri |         |         |
+|         |         |         |         | ng_inde |         |         |
+|         |         |         |         | x:ai_ta |         |         |
+|         |         |         |         | ny_mean |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| *       | ai      | ai_     | All     | ai      | ai_     | All     |
+| *Insign | _hiring | pany_f, | sign    | _hiring | tany_f, | sign    |
+| ificant | _index, | ai_     | ificant | _index, | ai_     | ificant |
+| va      | ai_     | pany_h, |         | ai_     | tany_h, |         |
+| riables | pany_f, | ai      |         | tany_f, | ai_     |         |
+| 10%**   | ai_     | _pany_i |         | ai_     | tany_i, |         |
+|         | pany_h, |         |         | tany_g, | ai      |         |
+|         | ai      |         |         | ai_     | _tany_n |         |
+|         | _pany_i |         |         | tany_h, |         |         |
+|         |         |         |         | ai_     |         |         |
+|         |         |         |         | tany_i, |         |         |
+|         |         |         |         | ai_hiri |         |         |
+|         |         |         |         | ng_inde |         |         |
+|         |         |         |         | x:ai_ta |         |         |
+|         |         |         |         | ny_mean |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+
+: Table 6.1‑1 SUMMARY OF MODEL RESULTS (DEPENDENT VARIABLE:
+EMP_RATE_TOTAL)
+
+```{r echo=FALSE}
+model_names <- paste0("Model ", 1:(n_models))
+
+# notes
+notes <- c()
+for (i in 1:n_models) {
+  notes <- c(notes, paste(model_names[i], ":", 
+                          ifelse(model_types[i] == "fe", "Fixed Effects",
+                                 ifelse(model_types[i] == "re", "Random Effects",
+                                        ifelse(model_types[i] == "pooled", "Pooled OLS", "Unknown")))))
+}
+
+# table
+use_robust <- any(!sapply(robust_ses, is.null))
+
+if (use_robust) {
+  for (i in 1:n_models) {
+    if (is.null(robust_ses[[i]])) {
+      robust_ses[[i]] <- sqrt(diag(vcov(results_list[[i]])))
+    }
+  }
+  
+  stargazer(results_list,
+            type = "text",
+            title = "Model Comparison: General to Specific",
+            column.labels = model_names,
+            dep.var.labels = dep_var_name,
+            se = robust_ses,
+            keep.stat = c("n", "rsq", "adj.rsq"),
+            star.cutoffs = c(0.1, 0.05, 0.01),
+            notes = c("Robust standard errors in parentheses", notes),
+            notes.align = "l",
+            digits = 3,
+            no.space = TRUE)
+} else {
+  stargazer(results_list,
+            type = "text",
+            title = "Model Comparison: General to Specific",
+            column.labels = model_names,
+            dep.var.labels = dep_var_name,
+            keep.stat = c("n", "rsq", "adj.rsq"),
+            star.cutoffs = c(0.1, 0.05, 0.01),
+            notes = c("Standard errors in parentheses", notes),
+            notes.align = "l",
+            digits = 3,
+            no.space = TRUE)
+}
+```
+
+The analysis of the variable coefficients in Model 3 and 6 provides the
+following insights (Table 6.1-2).
+
+Variables with a positive and significant impact on the total employment
+rate (emp_rate_total), supporting H1:
+
+-   Water supply; sewerage, waste management (ai_pany_e) for both showed
+    a positive and statistically significant impact, for ai_tany_e
+    (0.215), for ai_pany_e (0.166). This suggests that higher adoption
+    of AI in sector E is associated with an increase in employment
+    rates.
+-   Wholesale and retail trade (ai_pany_g) for both displayed a positive
+    and statistically significant impact, for ai_pany_g (0.458), for
+    ai_tany_g (0.191). This indicates a strong positive association
+    between AI adoption in sector G and increased employment rates.
+-   Information and communication (ai_pany_j) have statistically
+    significant positive impact, similar for both models ai_pany_j
+    (0.101) and ai_tany_j (0.097). This also indicates a positive
+    relationship with higher employment rates.
+-   Administrative and support service activities (ai_pany_n) for both
+    models shows a positive association with increased employment rates
+    for ai_pany_j (0.199) and ai_tany_j (0.070).
+
+These findings support the part of Hypothesis H1 that AI complement
+human labour and create new job opportunities, leading to increased
+employment rates.
+
+Variables with a negative and significant impact on the total employment
+rate (emp_rate_total), contradicting H1:
+
+-   Manufacturing for ai_pany_c (-0.416) and ai_tany_c (-0.252) indicate
+    that higher AI adoption in sector C is associated with a decrease in
+    employment rates.
+-   AI in professional, scientific and technical activities ai_pany_m
+    (-0.185) and ai_pany_m (-0.092) suggests a negative relationship
+    with employment rates.
+
+These results do not support the overall premise of Hypothesis H1 that
+AI leads to increased employment. Instead, they suggest that certain
+forms of AI adoption may lead to job displacement or\
+a negative influence on employment rates.
+
+Table 6.1‑3 AI Adoption Impact on Employment Rates (using ai_pany and
+ai_tany indicators)
+
++-----------------------------------------+-------------+-------------+
+| **AI Adoption Indicator (Purpose of     | **AI_PANY   | **AI_TANY   |
+| AI)**                                   | (Model 3)** | (Model 6)** |
++-----------------------------------------+-------------+-------------+
+| **ai_pany_c / ai_tany_c (AI in          | -0.416      | -0.252      |
+| Manufacturing)**                        |             |             |
++-----------------------------------------+-------------+-------------+
+| **ai_pany_e / ai_tany_e (AI in Water    | 0.166       | 0.215       |
+| supply; sewerage, waste management)**   |             |             |
++-----------------------------------------+-------------+-------------+
+| **ai_pany_g / ai_tany_g (AI in          | 0.458       | 0.191       |
+| Wholesale and retail trade)**           |             |             |
++-----------------------------------------+-------------+-------------+
+| **ai_pany_j / ai_tany_j (AI in          | 0.101       | 0.097       |
+| Information and communication)**        |             |             |
++-----------------------------------------+-------------+-------------+
+| **ai_pany_m / ai_tany_m (AI in          | -0.185      | -0.092      |
+| Professional, scientific and technical  |             |             |
+| activities)**                           |             |             |
++-----------------------------------------+-------------+-------------+
+| **ai_pany_n / ai_tany_n (AI             | 0.199       | 0.070       |
+| Administrative and support service      |             |             |
+| activities)**                           |             |             |
++-----------------------------------------+-------------+-------------+
+
+## Secondary Hypothesis (H2)
+
+The Secondary Hypothesis (H2) proposes that the relationship between AI
+adoption and employment exhibits gender-specific effects, with a
+stronger positive impact on female employment rates compared to male
+employment rates in EU countries. Models were run separately for
+emp_rate_female and emp_rate_male. Similar to H1, diagnostic tests were
+performed for these models. Both panel effects and random effects were
+found in all models. The Hausman test results suggested use of Random
+Effects models. Cross-sectional dependence was present in all models for
+H2, thus robust standard errors (clustered) were applied. Most models
+showed no autocorrelation. Heteroskedasticity tests showed mixed
+results.
+
+### AI_HIRING_INDEX + AI_PANY_SECTORS
+
+```{r include=FALSE}
+# H2_pany:
+models_list <- list(
+  emp_rate_female  ~ ai_hiring_index + ai_pany_c + ai_pany_e + ai_pany_f + ai_pany_g + ai_pany_h + ai_pany_i + ai_pany_j + ai_pany_m + ai_pany_n + ai_pany_mean:ai_hiring_index,
+  emp_rate_female  ~ ai_hiring_index + ai_pany_c + ai_pany_e + ai_pany_f + ai_pany_g + ai_pany_h + ai_pany_i + ai_pany_j + ai_pany_m + ai_pany_n,
+  emp_rate_female  ~ ai_hiring_index + ai_pany_c + ai_pany_e + ai_pany_g + ai_pany_j + ai_pany_m + ai_pany_n,
+  emp_rate_male  ~ ai_hiring_index + ai_pany_c + ai_pany_e + ai_pany_f + ai_pany_g + ai_pany_h + ai_pany_i + ai_pany_j + ai_pany_m + ai_pany_n + ai_pany_mean:ai_hiring_index,
+  emp_rate_male  ~ ai_hiring_index + ai_pany_c + ai_pany_e + ai_pany_f + ai_pany_g + ai_pany_h + ai_pany_i + ai_pany_j + ai_pany_m + ai_pany_n,
+  emp_rate_male  ~ ai_hiring_index + ai_pany_c + ai_pany_e + ai_pany_g + ai_pany_j + ai_pany_m + ai_pany_n
+)
+model_names <- paste0("Model ", 1:length(models_list))
+```
+
+```{r include=FALSE}
+get_dep_var <- function(formula) {
+  as.character(formula[[2]])
+}
+dep_var_name <- get_dep_var(models_list[[1]])
+
+
+n_models <- length(models_list)
+results_list <- list()
+model_types <- character(n_models)
+robust_ses <- list()
+
+
+for (i in 1:n_models) {
+  
+  cat("\n", rep("=", 80), "\n", sep = "")
+  cat("MODEL", i, "ANALYSIS\n")
+  cat(rep("=", 80), "\n\n", sep = "")
+  
+  tested_model <- models_list[[i]]
+  cat("Formula:", deparse(tested_model), "\n\n")
+  
+  ## MODELS ----
+  pooled <- plm(tested_model, data = panel, model = "pooling")
+  fixed <- plm(tested_model, data = panel, index = c("country", "year"), model = "within")
+  random <- plm(tested_model, data = panel, index = c("country", "year"), model = "random")
+  
+  ## 5.1. TEST FOR PANEL EFFECTS ----
+  # Test Fixed Effects vs Pooled OLS
+  pf_test <- pFtest(fixed, pooled)
+  print(pf_test)
+  
+  ### Test Random Effects vs Pooled OLS ----
+  bp_test <- plmtest(pooled, type = "bp")
+  print(bp_test)
+  
+  ## 5.2. MODEL SELECTION ----
+  if (pf_test$p.value > 0.05 & bp_test$p.value > 0.05) {
+    cat("\n[USE POOLED OLS] - No significant panel effects\n")
+    chosen_model <- pooled
+    model_type <- "pooled"
+  } else {
+    cat("\n[Panel effects exist] - check Hausman test\n")
+    
+    ### Hausman Test ----
+    hausman_test <- phtest(fixed, random)
+    print(hausman_test)
+    cat(">>> Hausman test p-value:", round(hausman_test$p.value, 4), "\n")
+    
+    if (hausman_test$p.value < 0.05) {
+      cat("\n[Hausman test significant - USE FIXED EFFECTS]\n")
+      chosen_model <- fixed
+      model_type <- "fe"
+    } else {
+      cat("\n[Hausman test not significant - USE RANDOM EFFECTS]\n")
+      chosen_model <- random
+      model_type <- "re"
+    }
+  }
+  
+  ## 5.3. WALD TEST FOR VARIABLE REMOVAL ----
+  if (i > 1) {
+    cat("\n--- WALD TEST FOR VARIABLE REMOVAL ---\n")
+    
+    # Re-estimate both models with the same method as chosen_model
+    if (model_type == "fe") {
+      model_current <- plm(models_list[[i]], data = panel, model = "within", index = c("country", "year"))
+      model_previous <- plm(models_list[[i-1]], data = panel, model = "within", index = c("country", "year"))
+    } else if (model_type == "re") {
+      model_current <- plm(models_list[[i]], data = panel, model = "random", index = c("country", "year"))
+      model_previous <- plm(models_list[[i-1]], data = panel, model = "random", index = c("country", "year"))
+    } else {
+      model_current <- plm(models_list[[i]], data = panel, model = "pooling")
+      model_previous <- plm(models_list[[i-1]], data = panel, model = "pooling")
+    }
+    
+    # Perform Wald test
+    tryCatch({
+      wald_test <- waldtest(model_previous, model_current)
+      print(wald_test)
+      
+      # Extract p-value
+      p_value <- wald_test$`Pr(>Chisq)`[2]
+      if (is.na(p_value)) p_value <- wald_test$`Pr(>F)`[2]
+      
+      if (!is.na(p_value)) {
+        if (p_value > 0.05) {
+          cat(">>> Variable removal is justified (p =", round(p_value, 4), ")\n")
+        } else {
+          cat(">>> Variable removal may not be justified (p =", round(p_value, 4), ")\n")
+        }
+      }
+    }, error = function(e) {
+      cat(">>> Wald test failed:", e$message, "\n")
+    })
+  } else {
+    cat("\n--- WALD TEST: Not applicable for first model ---\n")
+  }
+  
+  ## 5.4. DIAGNOSTIC TESTS ----
+  cat("\n--- DIAGNOSTIC TESTS ---\n")
+  
+  ### Autocorrelation Test ----
+  if (model_type != "pooled") {
+    serial_test <- pbgtest(chosen_model)
+    print(serial_test)
+    serial_corr <- serial_test$p.value < 0.05
+    if (serial_corr) {
+      cat(">>> Autocorrelation detected (p =", round(serial_test$p.value, 4), ")\n")
+    } else {
+      cat(">>> No autocorrelation (p =", round(serial_test$p.value, 4), ")\n")
+    }
+  } else {
+    ### For pooled OLS, use Durbin-Watson test ----
+    ols_model <- lm(tested_model, data = panel)
+    dw_test <- dwtest(ols_model)
+    print(dw_test)
+    ### DW statistic around 2 = no autocorrelation ----
+    serial_corr <- dw_test$p.value < 0.05
+    if (serial_corr) {
+      cat(">>> Autocorrelation detected (DW =", round(dw_test$statistic, 3), ", p =", round(dw_test$p.value, 4), ")\n")
+    } else {
+      cat(">>> No autocorrelation (DW =", round(dw_test$statistic, 3), ", p =", round(dw_test$p.value, 4), ")\n")
+    }
+  }
+  
+  ### Heteroskedasticity Test ----
+  hetero_test <- bptest(tested_model, data = panel, studentize = TRUE)
+  print(hetero_test)
+  heterosked <- hetero_test$p.value < 0.05
+  if (heterosked) {
+    cat(">>> Heteroskedasticity detected (p =", round(hetero_test$p.value, 4), ")\n")
+  } else {
+    cat(">>> Homoskedasticity (p =", round(hetero_test$p.value, 4), ")\n")
+  }
+  
+  ### Cross-sectional dependence ----
+  if (model_type != "pooled") {
+    cd_test <- pcdtest(chosen_model, test = "cd")
+    print(cd_test)
+    cross_dep <- cd_test$p.value < 0.05
+    if (cross_dep) {
+      cat(">>> Cross-sectional dependence detected (p =", round(cd_test$p.value, 4), ")\n")
+    } else {
+      cat(">>> No cross-sectional dependence (p =", round(cd_test$p.value, 4), ")\n")
+    }
+  } else {
+    cat(">>> Cross-sectional dependence test not applicable for pooled OLS\n")
+    cross_dep <- FALSE
+  }
+  
+  ## 5.4. ROBUST STANDARD ERRORS ----
+  cat("\n--- ROBUST STANDARD ERRORS ---\n")
+  
+  if (!serial_corr & !heterosked & !cross_dep) {
+    cat(">>> No corrections needed - use regular SEs\n")
+    final_results <- summary(chosen_model)
+    robust_se <- NULL
+    
+  } else if (heterosked & !serial_corr & !cross_dep) {
+    cat(">>> Heteroskedasticity only - use White robust SEs\n")
+    final_results <- coeftest(chosen_model, 
+                              vcov. = vcovHC(chosen_model, method = "white1", type = "HC0"))
+    robust_se <- sqrt(diag(vcovHC(chosen_model, method = "white1", type = "HC0")))
+    
+  } else if ((serial_corr | heterosked) & !cross_dep) {
+    cat(">>> Autocorrelation and/or heteroskedasticity - use HAC robust SEs\n")
+    if (model_type == "fe") {
+      final_results <- coeftest(chosen_model, 
+                                vcov. = vcovHC(chosen_model, method = "arellano", type = "HC1"))
+      robust_se <- sqrt(diag(vcovHC(chosen_model, method = "arellano", type = "HC1")))
+    } else {
+      final_results <- coeftest(chosen_model, 
+                                vcov. = vcovHC(chosen_model, method = "white1", type = "HC0"))
+      robust_se <- sqrt(diag(vcovHC(chosen_model, method = "white1", type = "HC0")))
+    }
+    
+  } else if (cross_dep) {
+    cat(">>> Cross-sectional dependence - use clustered robust SEs\n")
+    final_results <- coeftest(chosen_model, 
+                              vcov. = vcovHC(chosen_model, method = "white1", type = "HC0", cluster = "group"))
+    robust_se <- sqrt(diag(vcovHC(chosen_model, method = "white1", type = "HC0", cluster = "group")))
+  }
+  
+  print(final_results)
+  
+  
+  ## 5.5. IDENTIFY INSIGNIFICANT VARIABLES ----
+  cat("\n--- CHECKING VARIABLE SIGNIFICANCE ---\n")
+  if (is.matrix(final_results)) {
+    p_values <- final_results[, "Pr(>|t|)"]
+  } else {
+    p_values <- summary(chosen_model)$coefficients[, "Pr(>|t|)"]
+  }
+  
+  insignificant_vars <- names(p_values)[p_values > 0.05 & names(p_values) != "(Intercept)"]
+  if (length(insignificant_vars) > 0) {
+    cat(">>> Not significant at 5% level:", paste(insignificant_vars, collapse = ", "), "\n")
+  } else {
+    cat(">>> All variables are significant at 5% level\n")
+  }
+  
+  ### Save results
+  results_list[[i]] <- chosen_model
+  model_types[i] <- model_type
+  robust_ses[[i]] <- robust_se
+}
+
+## 5.6. SUMMARY OF ALL TESTS ----
+cat("--- SUMMARY OF DIAGNOSTIC TESTS FOR ALL MODELS ---\n")
+
+test_rows <- c("Formula", 
+               "Model Type",
+               "F-test for individual effects (FE vs Pooled)", "  Interpretation",
+               "Breusch-Pagan test (RE vs Pooled)", "  Interpretation",
+               "Hausman test (RE vs FE)", "  Interpretation",
+               "Wald test for variable removal", "  Interpretation",
+               "Breusch-Godfrey/Wooldridge test (Serial Correlation)", "  Interpretation",
+               "Studentized Breusch-Pagan test (Heteroskedasticity)", "  Interpretation",
+               "Pesaran CD test (Cross-sectional Dependence)", "  Interpretation",
+               "Insignificant variables (5%)",
+               "Insignificant variables (10%)")
+
+test_results_matrix <- matrix("", nrow = length(test_rows), ncol = n_models)
+rownames(test_results_matrix) <- test_rows
+colnames(test_results_matrix) <- model_names
+
+wald_results <- list()
+
+for (i in 1:n_models) {
+  
+  #### Formula ----
+  formula_str <- paste(deparse(models_list[[i]]), collapse = " ")
+  test_results_matrix[1, i] <- formula_str
+  
+  ### Model type ----
+  test_results_matrix[2, i] <- toupper(model_types[i])
+  
+  ### tests p-values ----
+  tested_model <- models_list[[i]]
+  pooled <- plm(tested_model, data = panel, model = "pooling")
+  fixed <- plm(tested_model, data = panel, index = c("country", "year"), model = "within")
+  random <- plm(tested_model, data = panel, index = c("country", "year"), model = "random")
+  
+  ### F test ----
+  pf_test <- pFtest(fixed, pooled)
+  test_results_matrix[3, i] <- sprintf("p = %.4f%s", pf_test$p.value, 
+                                       ifelse(pf_test$p.value < 0.05, "*", ""))
+  test_results_matrix[4, i] <- ifelse(pf_test$p.value < 0.05, 
+                                      "Panel effects exist", 
+                                      "No panel effects")
+  
+  ### BP test ----
+  bp_test <- plmtest(pooled, type = "bp")
+  test_results_matrix[5, i] <- sprintf("p = %.4f%s", bp_test$p.value, 
+                                       ifelse(bp_test$p.value < 0.05, "*", ""))
+  test_results_matrix[6, i] <- ifelse(bp_test$p.value < 0.05, 
+                                      "Random effects exist", 
+                                      "No random effects")
+  
+  ### Hausman test ----
+  if (pf_test$p.value < 0.05 | bp_test$p.value < 0.05) {
+    tryCatch({
+      hausman_test <- phtest(fixed, random)
+      test_results_matrix[7, i] <- sprintf("p = %.4f%s", hausman_test$p.value, 
+                                           ifelse(hausman_test$p.value < 0.05, "*", ""))
+      test_results_matrix[8, i] <- ifelse(hausman_test$p.value < 0.05, 
+                                          "Use Fixed Effects", 
+                                          "Use Random Effects")
+    }, error = function(e) {
+      test_results_matrix[7, i] <- "Failed"
+      test_results_matrix[8, i] <- "Test failed"
+    })
+  } else {
+    test_results_matrix[7, i] <- "N/A"
+    test_results_matrix[8, i] <- "Use Pooled OLS"
+  }
+  
+  ### Wald test ----
+  if (i > 1) {
+    tryCatch({
+      if (model_types[i] == "fe") {
+        model_current <- plm(models_list[[i]], data = panel, model = "within", index = c("country", "year"))
+        model_previous <- plm(models_list[[i-1]], data = panel, model = "within", index = c("country", "year"))
+      } else if (model_types[i] == "re") {
+        model_current <- plm(models_list[[i]], data = panel, model = "random", index = c("country", "year"))
+        model_previous <- plm(models_list[[i-1]], data = panel, model = "random", index = c("country", "year"))
+      } else {
+        model_current <- plm(models_list[[i]], data = panel, model = "pooling")
+        model_previous <- plm(models_list[[i-1]], data = panel, model = "pooling")
+      }
+      
+      wald_test <- waldtest(model_current, model_previous)
+      p_value <- wald_test$`Pr(>Chisq)`[2]
+      if (is.na(p_value)) p_value <- wald_test$`Pr(>F)`[2]
+      
+      test_results_matrix[9, i] <- sprintf("p = %.4f%s", p_value, 
+                                           ifelse(p_value > 0.05, "*", ""))
+      test_results_matrix[10, i] <- ifelse(p_value > 0.05, 
+                                           "Removal justified", 
+                                           "Keep removed vars")
+    }, error = function(e) {
+      test_results_matrix[9, i] <- "Failed"
+      test_results_matrix[10, i] <- "Test failed"
+    })
+  } else {
+    test_results_matrix[9, i] <- "N/A"
+    test_results_matrix[10, i] <- ""
+  }
+  
+  ### Serial correlation ----
+  if (model_types[i] != "pooled") {
+    serial_test <- pbgtest(results_list[[i]])
+    test_results_matrix[11, i] <- sprintf("p = %.4f%s", serial_test$p.value, 
+                                          ifelse(serial_test$p.value < 0.05, "*", ""))
+    test_results_matrix[12, i] <- ifelse(serial_test$p.value < 0.05, 
+                                         "Autocorrelation present", 
+                                         "No autocorrelation")
+  } else {
+    ols_model <- lm(tested_model, data = panel)
+    dw_test <- dwtest(ols_model)
+    test_results_matrix[11, i] <- sprintf("DW = %.2f, p = %.4f%s", 
+                                          dw_test$statistic,
+                                          dw_test$p.value,
+                                          ifelse(dw_test$p.value < 0.05, "*", ""))
+    test_results_matrix[12, i] <- ifelse(dw_test$p.value < 0.05, 
+                                         "Autocorrelation present", 
+                                         "No autocorrelation")
+  }
+  
+  ### Heteroskedasticity ----
+  hetero_test <- bptest(tested_model, data = panel, studentize = TRUE)
+  test_results_matrix[13, i] <- sprintf("p = %.4f%s", hetero_test$p.value, 
+                                        ifelse(hetero_test$p.value < 0.05, "*", ""))
+  test_results_matrix[14, i] <- ifelse(hetero_test$p.value < 0.05, 
+                                       "Heteroskedasticity present", 
+                                       "Homoskedasticity")
+  
+  ### Cross-sectional dependence ----
+  if (model_types[i] != "pooled") {
+    cd_test <- pcdtest(results_list[[i]], test = "cd")
+    test_results_matrix[15, i] <- sprintf("p = %.4f%s", cd_test$p.value, 
+                                          ifelse(cd_test$p.value < 0.05, "*", ""))
+    test_results_matrix[16, i] <- ifelse(cd_test$p.value < 0.05, 
+                                         "Cross-sect. dep. present. Robust SEs applied (Clustered)", 
+                                         "No cross-sect. dep.")
+  } else {
+    test_results_matrix[15, i] <- "N/A"
+    test_results_matrix[16, i] <- "Not applicable"
+  }
+  
+  ### Insignificant variables ----
+  if (!is.null(robust_ses[[i]])) {
+    # results with robust SEs
+    if (model_types[i] == "fe") {
+      coef_test <- coeftest(results_list[[i]], 
+                            vcov. = vcovHC(results_list[[i]], method = "arellano", type = "HC1"))
+    } else {
+      coef_test <- coeftest(results_list[[i]], 
+                            vcov. = vcovHC(results_list[[i]], method = "white1", type = "HC0"))
+    }
+    p_values <- coef_test[, "Pr(>|t|)"]
+  } else {
+    p_values <- summary(results_list[[i]])$coefficients[, "Pr(>|t|)"]
+  }
+  
+  # 5%
+  insignif_5 <- names(p_values)[p_values > 0.05 & names(p_values) != "(Intercept)"]
+  if (length(insignif_5) > 0) {
+    test_results_matrix[17, i] <- paste(insignif_5, collapse = ", ")
+  } else {
+    test_results_matrix[17, i] <- "All significant"
+  }
+  
+  # 10%
+  insignif_10 <- names(p_values)[p_values > 0.10 & names(p_values) != "(Intercept)"]
+  if (length(insignif_10) > 0) {
+    test_results_matrix[18, i] <- paste(insignif_10, collapse = ", ")
+  } else {
+    test_results_matrix[18, i] <- "All significant"
+  }
+}
+
+### *print ----
+print(test_results_matrix, quote = FALSE, right = FALSE)
+```
+
+Table 6.2‑1 SUMMARY OF MODEL RESULTS (DEPENDENT VARIABLE:
+EMP_RATE_FEMALE AND EMP_RATE_MALE)
+
++---------+---------+---------+---------+---------+---------+---------+
+| *       | **M     | **M     | **M     | **M     | **M     | **M     |
+| *Test** | odel1** | odel2** | odel3** | odel4** | odel5** | odel6** |
++---------+---------+---------+---------+---------+---------+---------+
+| **Fo    | e       | e       | e       | emp_ra  | emp_ra  | emp_ra  |
+| rmula** | mp_rate | mp_rate | mp_rate | te_male | te_male | te_male |
+|         | _female | _female | _female | \~      | \~      | \~      |
+|         | \~      | \~      | \~      | ai_     | ai_     | ai_     |
+|         | ai_     | ai_     | ai_     | hiring_ | hiring_ | hiring_ |
+|         | hiring_ | hiring_ | hiring_ | index + | index + | index + |
+|         | index + | index + | index + | ai_p    | ai_p    | ai_p    |
+|         | ai_p    | ai_p    | ai_p    | any_c + | any_c + | any_c + |
+|         | any_c + | any_c + | any_c + | ai_p    | ai_p    | ai_p    |
+|         | ai_p    | ai_p    | ai_p    | any_e + | any_e + | any_e + |
+|         | any_e + | any_e + | any_e + | ai_p    | *       | ai_p    |
+|         | ai_p    | *       | ai_p    | any_f + | *ai_pan | any_g + |
+|         | any_f + | *ai_pan | any_g + | ai_p    | y_f** + | ai_p    |
+|         | ai_p    | y_f** + | ai_p    | any_g + | ai_p    | any_j + |
+|         | any_g + | ai      | any_j + | ai_p    | any_g + | ai_p    |
+|         | ai_p    | _pany_g | ai_p    | any_h + | **ai_p  | any_m + |
+|         | any_h + | **+     | any_m + | ai_p    | any_h + | ai      |
+|         | ai_p    | ai_pan  | ai      | any_i + | ai_pan  | _pany_n |
+|         | any_i + | y_h** + | _pany_n | ai_p    | y_i** + |         |
+|         | ai_p    | *       |         | any_j + | ai_p    |         |
+|         | any_j + | *ai_pan |         | ai_p    | any_j + |         |
+|         | ai_p    | y_i** + |         | any_m + | ai_p    |         |
+|         | any_m + | ai_p    |         | ai_p    | any_m + |         |
+|         | ai_p    | any_j + |         | any_n + | ai      |         |
+|         | any_n + | ai_p    |         | **ai    | _pany_n |         |
+|         | **ai    | any_m + |         | _pany_m |         |         |
+|         | _pany_m | ai      |         | ean:ai_ |         |         |
+|         | ean:ai_ | _pany_n |         | hiring_ |         |         |
+|         | hiring_ |         |         | index** |         |         |
+|         | index** |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **Model | RE      | RE      | RE      | RE      | RE      | RE      |
+| Type**  |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| *       | p =     | p =     | p =     | p =     | p =     | p =     |
+| *F-test | 0       | 0       | 0       | 0       | 0       | 0       |
+| for     | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* |
+| ind     |         |         |         |         |         |         |
+| ividual |         |         |         |         |         |         |
+| effects |         |         |         |         |         |         |
+| FE vs   |         |         |         |         |         |         |
+| P       |         |         |         |         |         |         |
+| ooled** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Panel   | Panel   | Panel   | Panel   | Panel   | Panel   |
+| terpret | effects | effects | effects | effects | effects | effects |
+| ation** | exist   | exist   | exist   | exist   | exist   | exist   |
++---------+---------+---------+---------+---------+---------+---------+
+| *       | p =     | p =     | p =     | p =     | p =     | p =     |
+| *Breusc | 0       | 0       | 0       | 0       | 0       | 0       |
+| h-Pagan | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* |
+| test RE |         |         |         |         |         |         |
+| vs      |         |         |         |         |         |         |
+| P       |         |         |         |         |         |         |
+| ooled** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Random  | Random  | Random  | Random  | Random  | Random  |
+| terpret | effects | effects | effects | effects | effects | effects |
+| ation** | exist   | exist   | exist   | exist   | exist   | exist   |
++---------+---------+---------+---------+---------+---------+---------+
+| **      | p =     | p =     | p =     | p =     | p =     | p =     |
+| Hausman | 0.9999  | 0.5408  | 0.9603  | 0.1853  | 0.9991  | 0.9967  |
+| test RE |         |         |         |         |         |         |
+| vs FE** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Use     | Use     | Use     | Use     | Use     | Use     |
+| terpret | Random  | Random  | Random  | Random  | Random  | Random  |
+| ation** | Effects | Effects | Effects | Effects | Effects | Effects |
++---------+---------+---------+---------+---------+---------+---------+
+| **Wald  | N/A     | p =     | p =     |         | p =     | p =     |
+| test    |         | 0       | 0       |         | 0       | 0       |
+| for     |         | .3284\* | .5646\* |         | .1588\* | .5787\* |
+| v       |         |         |         |         |         |         |
+| ariable |         |         |         |         |         |         |
+| re      |         |         |         |         |         |         |
+| moval** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    |         | Removal | Removal |         | Removal | Removal |
+| terpret |         | ju      | ju      |         | ju      | ju      |
+| ation** |         | stified | stified |         | stified | stified |
++---------+---------+---------+---------+---------+---------+---------+
+| **Breus | p =     | p =     | p =     | p =     | p =     | p =     |
+| ch-Godf | 0.1703  | 0.2227  | 0.1956  | 0.1580  | 0.2277  | 0.3311  |
+| rey/Woo |         |         |         |         |         |         |
+| ldridge |         |         |         |         |         |         |
+| test    |         |         |         |         |         |         |
+| Serial  |         |         |         |         |         |         |
+| Correl  |         |         |         |         |         |         |
+| ation** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | No      | No      | No      | No      | No      | No      |
+| terpret | a       | a       | a       | a       | a       | a       |
+| ation** | utocorr | utocorr | utocorr | utocorr | utocorr | utocorr |
+|         | elation | elation | elation | elation | elation | elation |
++---------+---------+---------+---------+---------+---------+---------+
+| **Stud  | p =     | p =     | p =     | p =     | p =     | p =     |
+| entized | 0       | 0       | 0       | 0.0591  | 0.0613  | 0       |
+| Breusc  | .0173\* | .0030\* | .0040\* |         |         | .0373\* |
+| h-Pagan |         |         |         |         |         |         |
+| test    |         |         |         |         |         |         |
+| Hetero  |         |         |         |         |         |         |
+| skedast |         |         |         |         |         |         |
+| icity** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Hete    | Hete    | Hete    | Ho      | Ho      | Hete    |
+| terpret | roskeda | roskeda | roskeda | moskeda | moskeda | roskeda |
+| ation** | sticity | sticity | sticity | sticity | sticity | sticity |
+|         | present | present | present |         |         | present |
++---------+---------+---------+---------+---------+---------+---------+
+| **      | p =     | p =     | p =     | p =     | p =     | p =     |
+| Pesaran | 0       | 0       | 0       | 0       | 0       | 0       |
+| CD test | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* |
+| C       |         |         |         |         |         |         |
+| ross-se |         |         |         |         |         |         |
+| ctional |         |         |         |         |         |         |
+| Depen   |         |         |         |         |         |         |
+| dence** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Cros    | Cros    | Cros    | Cros    | Cros    | Cros    |
+| terpret | s-sect. | s-sect. | s-sect. | s-sect. | s-sect. | s-sect. |
+| ation** | dep.    | dep.    | dep.    | dep.    | dep.    | dep.    |
+|         | p       | p       | p       | p       | p       | p       |
+|         | resent. | resent. | resent. | resent. | resent. | resent. |
+|         | Robust  | Robust  | Robust  | Robust  | Robust  | Robust  |
+|         | SEs     | SEs     | SEs     | SEs     | SEs     | SEs     |
+|         | applied | applied | applied | applied | applied | applied |
+|         | Cl      | Cl      | Cl      | Cl      | Cl      | Cl      |
+|         | ustered | ustered | ustered | ustered | ustered | ustered |
++---------+---------+---------+---------+---------+---------+---------+
+| *       | ai      | ai_     | All     | ai      | ai_     | ai      |
+| *Insign | _hiring | pany_f, | sign    | _hiring | pany_f, | _pany_j |
+| ificant | _index, | ai_     | ificant | _index, | ai_     |         |
+| va      | ai_     | pany_h, |         | ai_     | pany_h, |         |
+| riables | pany_f, | ai      |         | pany_f, | ai_     |         |
+| 5%**    | ai_     | _pany_i |         | ai_     | pany_i, |         |
+|         | pany_h, |         |         | pany_h, | ai      |         |
+|         | ai_     |         |         | ai_     | _pany_j |         |
+|         | pany_i, |         |         | pany_i, |         |         |
+|         | ai_hiri |         |         | ai      |         |         |
+|         | ng_inde |         |         | _pany_j |         |         |
+|         | x:ai_pa |         |         |         |         |         |
+|         | ny_mean |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| *       | ai      | ai_     | All     | ai      | ai_     | ai      |
+| *Insign | _hiring | pany_f, | sign    | _hiring | pany_f, | _pany_j |
+| ificant | _index, | ai_     | ificant | _index, | ai_     |         |
+| va      | ai_     | pany_h, |         | ai_     | pany_h, |         |
+| riables | pany_f, | ai      |         | pany_f, | ai_     |         |
+| 10%**   | ai_     | _pany_i |         | ai_     | pany_i, |         |
+|         | pany_h, |         |         | pany_h, | ai      |         |
+|         | ai_     |         |         | ai      | _pany_j |         |
+|         | pany_i, |         |         | _pany_i |         |         |
+|         | ai_hiri |         |         |         |         |         |
+|         | ng_inde |         |         |         |         |         |
+|         | x:ai_pa |         |         |         |         |         |
+|         | ny_mean |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+
+TABLE 6.2 2 MODEL COMPARISON (DEPENDENT VARIABLE: EMP_RATE_FEMALE AND
+EMP_RATE_MALE)
+
+```{r echo=FALSE}
+model_names <- paste0("Model ", 1:(n_models))
+
+# notes
+notes <- c()
+for (i in 1:n_models) {
+  notes <- c(notes, paste(model_names[i], ":", 
+                          ifelse(model_types[i] == "fe", "Fixed Effects",
+                                 ifelse(model_types[i] == "re", "Random Effects",
+                                        ifelse(model_types[i] == "pooled", "Pooled OLS", "Unknown")))))
+}
+
+# table
+use_robust <- any(!sapply(robust_ses, is.null))
+
+if (use_robust) {
+  for (i in 1:n_models) {
+    if (is.null(robust_ses[[i]])) {
+      robust_ses[[i]] <- sqrt(diag(vcov(results_list[[i]])))
+    }
+  }
+  
+  stargazer(results_list,
+            type = "text",
+            title = "Model Comparison: General to Specific",
+            column.labels = model_names,
+            dep.var.labels = dep_var_name,
+            se = robust_ses,
+            keep.stat = c("n", "rsq", "adj.rsq"),
+            star.cutoffs = c(0.1, 0.05, 0.01),
+            notes = c("Robust standard errors in parentheses", notes),
+            notes.align = "l",
+            digits = 3,
+            no.space = TRUE)
+} else {
+  stargazer(results_list,
+            type = "text",
+            title = "Model Comparison: General to Specific",
+            column.labels = model_names,
+            dep.var.labels = dep_var_name,
+            keep.stat = c("n", "rsq", "adj.rsq"),
+            star.cutoffs = c(0.1, 0.05, 0.01),
+            notes = c("Standard errors in parentheses", notes),
+            notes.align = "l",
+            digits = 3,
+            no.space = TRUE)
+}
+```
+
+The analysis of the variable coefficients in Model 3 and 6 provides the
+following insights (Table 6.2-2).
+
+Supporting H2:
+
+-   Water supply; sewerage, waste management (ai_pany_e) for both showed
+    a positive and statistically significant impact, which was stronger
+    for female employment (0.168) than male (0.149).
+-   Information and communication (ai_pany_j) have statistically
+    significant positive impact for female employment (0.130), while it
+    was not significant for male employment model.
+-   Administrative and support service activities (ai_pany_n) for both
+    showed a positive and statistically significant impact, which was
+    stronger for female employment (0.206) than male (0.144).
+
+Contradicting H2:
+
+-   AI hiring index (ai_hiring_index) for both female (-0.074) and male
+    (-0.055) employment showed a negative impact, but the negative
+    impact was stronger for female employment.
+-   Manufacturing (ai_pany_c) for both genders showed a negative and
+    statistically significant impact, more for female employment
+    (-0.533) than male (-0.394).
+-   Professional, scientific and technical activities (ai_pany_m) for
+    both exhibited a negative and statistically significant impact,
+    stronger for female employment (-0.216) than male (-0.148).
+-   Wholesale and retail trade (ai_pany_g) for both displayed a positive
+    impact, the magnitudes were very similar, with a small difference
+    slightly favouring male employment (0.444 vs 0.442).
+
+Table 6.2‑3 Comparison of AI Adoption Impact on Female vs. Male
+Employment Rates (using ai_pany indicators)
+
++--------------------------------+------------------+-----------------+
+| **AI Adoption Indicator        | **Impact on      | **Impact on     |
+| (Purpose of AI)**              | Female           | Male Employment |
+|                                | Employment       | (Model 6)**     |
+|                                | (Model 3)**      |                 |
++--------------------------------+------------------+-----------------+
+| **ai_hiring_index (AI in       | -0.074           | -0.055          |
+| hiring processes)**            |                  |                 |
++--------------------------------+------------------+-----------------+
+| **ai_pany_c (AI in             | -0.533           | -0.394          |
+| Manufacturing)**               |                  |                 |
++--------------------------------+------------------+-----------------+
+| **ai_pany_e (AI in Water       | 0.168            | 0.149           |
+| supply; sewerage, waste        |                  |                 |
+| management)**                  |                  |                 |
++--------------------------------+------------------+-----------------+
+| **ai_pany_g (AI in Wholesale   | 0.442            | 0.403           |
+| and retail trade)**            |                  |                 |
++--------------------------------+------------------+-----------------+
+| **ai_pany_j (AI in Information | 0.130            | 0               |
+| and communication)**           |                  |                 |
++--------------------------------+------------------+-----------------+
+| **ai_pany_m (AI in             | -0.216           | -0.148          |
+| Professional, scientific and   |                  |                 |
+| technical activities)**        |                  |                 |
++--------------------------------+------------------+-----------------+
+| **ai_pany_n (AI Administrative | 0.206            | 0.144           |
+| and support service            |                  |                 |
+| activities)**                  |                  |                 |
++--------------------------------+------------------+-----------------+
+
+### AI_HIRING_INDEX + AI_TANY_SECTORS
+
+```{r include=FALSE}
+# H2_tany:
+models_list <- list(
+  emp_rate_female  ~ ai_hiring_index + ai_tany_c + ai_tany_e + ai_tany_f + ai_tany_g + ai_tany_h + ai_tany_i + ai_tany_j + ai_tany_m + ai_tany_n + ai_tany_mean:ai_hiring_index,
+  emp_rate_female  ~ ai_hiring_index + ai_tany_c + ai_tany_e + ai_tany_f + ai_tany_g + ai_tany_h + ai_tany_i + ai_tany_j + ai_tany_m + ai_tany_n,
+  emp_rate_female  ~ ai_hiring_index + ai_tany_c + ai_tany_e + ai_tany_g + ai_tany_j + ai_tany_m,
+  emp_rate_male  ~ ai_hiring_index + ai_tany_c + ai_tany_e + ai_tany_f + ai_tany_g + ai_tany_h + ai_tany_i + ai_tany_j + ai_tany_m + ai_tany_n + ai_tany_mean:ai_hiring_index,
+  emp_rate_male  ~ ai_hiring_index + ai_tany_c + ai_tany_e + ai_tany_f + ai_tany_g + ai_tany_h + ai_tany_i + ai_tany_j + ai_tany_m + ai_tany_n,
+  emp_rate_male  ~ ai_hiring_index + ai_tany_c + ai_tany_e + ai_tany_g + ai_tany_j + ai_tany_m
+)
+model_names <- paste0("Model ", 1:length(models_list))
+```
+
+```{r include=FALSE}
+get_dep_var <- function(formula) {
+  as.character(formula[[2]])
+}
+dep_var_name <- get_dep_var(models_list[[1]])
+
+
+n_models <- length(models_list)
+results_list <- list()
+model_types <- character(n_models)
+robust_ses <- list()
+
+
+for (i in 1:n_models) {
+  
+  cat("\n", rep("=", 80), "\n", sep = "")
+  cat("MODEL", i, "ANALYSIS\n")
+  cat(rep("=", 80), "\n\n", sep = "")
+  
+  tested_model <- models_list[[i]]
+  cat("Formula:", deparse(tested_model), "\n\n")
+  
+  ## MODELS ----
+  pooled <- plm(tested_model, data = panel, model = "pooling")
+  fixed <- plm(tested_model, data = panel, index = c("country", "year"), model = "within")
+  random <- plm(tested_model, data = panel, index = c("country", "year"), model = "random")
+  
+  ## 5.1. TEST FOR PANEL EFFECTS ----
+  # Test Fixed Effects vs Pooled OLS
+  pf_test <- pFtest(fixed, pooled)
+  print(pf_test)
+  
+  ### Test Random Effects vs Pooled OLS ----
+  bp_test <- plmtest(pooled, type = "bp")
+  print(bp_test)
+  
+  ## 5.2. MODEL SELECTION ----
+  if (pf_test$p.value > 0.05 & bp_test$p.value > 0.05) {
+    cat("\n[USE POOLED OLS] - No significant panel effects\n")
+    chosen_model <- pooled
+    model_type <- "pooled"
+  } else {
+    cat("\n[Panel effects exist] - check Hausman test\n")
+    
+    ### Hausman Test ----
+    hausman_test <- phtest(fixed, random)
+    print(hausman_test)
+    cat(">>> Hausman test p-value:", round(hausman_test$p.value, 4), "\n")
+    
+    if (hausman_test$p.value < 0.05) {
+      cat("\n[Hausman test significant - USE FIXED EFFECTS]\n")
+      chosen_model <- fixed
+      model_type <- "fe"
+    } else {
+      cat("\n[Hausman test not significant - USE RANDOM EFFECTS]\n")
+      chosen_model <- random
+      model_type <- "re"
+    }
+  }
+  
+  ## 5.3. WALD TEST FOR VARIABLE REMOVAL ----
+  if (i > 1) {
+    cat("\n--- WALD TEST FOR VARIABLE REMOVAL ---\n")
+    
+    # Re-estimate both models with the same method as chosen_model
+    if (model_type == "fe") {
+      model_current <- plm(models_list[[i]], data = panel, model = "within", index = c("country", "year"))
+      model_previous <- plm(models_list[[i-1]], data = panel, model = "within", index = c("country", "year"))
+    } else if (model_type == "re") {
+      model_current <- plm(models_list[[i]], data = panel, model = "random", index = c("country", "year"))
+      model_previous <- plm(models_list[[i-1]], data = panel, model = "random", index = c("country", "year"))
+    } else {
+      model_current <- plm(models_list[[i]], data = panel, model = "pooling")
+      model_previous <- plm(models_list[[i-1]], data = panel, model = "pooling")
+    }
+    
+    # Perform Wald test
+    tryCatch({
+      wald_test <- waldtest(model_previous, model_current)
+      print(wald_test)
+      
+      # Extract p-value
+      p_value <- wald_test$`Pr(>Chisq)`[2]
+      if (is.na(p_value)) p_value <- wald_test$`Pr(>F)`[2]
+      
+      if (!is.na(p_value)) {
+        if (p_value > 0.05) {
+          cat(">>> Variable removal is justified (p =", round(p_value, 4), ")\n")
+        } else {
+          cat(">>> Variable removal may not be justified (p =", round(p_value, 4), ")\n")
+        }
+      }
+    }, error = function(e) {
+      cat(">>> Wald test failed:", e$message, "\n")
+    })
+  } else {
+    cat("\n--- WALD TEST: Not applicable for first model ---\n")
+  }
+  
+  ## 5.4. DIAGNOSTIC TESTS ----
+  cat("\n--- DIAGNOSTIC TESTS ---\n")
+  
+  ### Autocorrelation Test ----
+  if (model_type != "pooled") {
+    serial_test <- pbgtest(chosen_model)
+    print(serial_test)
+    serial_corr <- serial_test$p.value < 0.05
+    if (serial_corr) {
+      cat(">>> Autocorrelation detected (p =", round(serial_test$p.value, 4), ")\n")
+    } else {
+      cat(">>> No autocorrelation (p =", round(serial_test$p.value, 4), ")\n")
+    }
+  } else {
+    ### For pooled OLS, use Durbin-Watson test ----
+    ols_model <- lm(tested_model, data = panel)
+    dw_test <- dwtest(ols_model)
+    print(dw_test)
+    ### DW statistic around 2 = no autocorrelation ----
+    serial_corr <- dw_test$p.value < 0.05
+    if (serial_corr) {
+      cat(">>> Autocorrelation detected (DW =", round(dw_test$statistic, 3), ", p =", round(dw_test$p.value, 4), ")\n")
+    } else {
+      cat(">>> No autocorrelation (DW =", round(dw_test$statistic, 3), ", p =", round(dw_test$p.value, 4), ")\n")
+    }
+  }
+  
+  ### Heteroskedasticity Test ----
+  hetero_test <- bptest(tested_model, data = panel, studentize = TRUE)
+  print(hetero_test)
+  heterosked <- hetero_test$p.value < 0.05
+  if (heterosked) {
+    cat(">>> Heteroskedasticity detected (p =", round(hetero_test$p.value, 4), ")\n")
+  } else {
+    cat(">>> Homoskedasticity (p =", round(hetero_test$p.value, 4), ")\n")
+  }
+  
+  ### Cross-sectional dependence ----
+  if (model_type != "pooled") {
+    cd_test <- pcdtest(chosen_model, test = "cd")
+    print(cd_test)
+    cross_dep <- cd_test$p.value < 0.05
+    if (cross_dep) {
+      cat(">>> Cross-sectional dependence detected (p =", round(cd_test$p.value, 4), ")\n")
+    } else {
+      cat(">>> No cross-sectional dependence (p =", round(cd_test$p.value, 4), ")\n")
+    }
+  } else {
+    cat(">>> Cross-sectional dependence test not applicable for pooled OLS\n")
+    cross_dep <- FALSE
+  }
+  
+  ## 5.4. ROBUST STANDARD ERRORS ----
+  cat("\n--- ROBUST STANDARD ERRORS ---\n")
+  
+  if (!serial_corr & !heterosked & !cross_dep) {
+    cat(">>> No corrections needed - use regular SEs\n")
+    final_results <- summary(chosen_model)
+    robust_se <- NULL
+    
+  } else if (heterosked & !serial_corr & !cross_dep) {
+    cat(">>> Heteroskedasticity only - use White robust SEs\n")
+    final_results <- coeftest(chosen_model, 
+                              vcov. = vcovHC(chosen_model, method = "white1", type = "HC0"))
+    robust_se <- sqrt(diag(vcovHC(chosen_model, method = "white1", type = "HC0")))
+    
+  } else if ((serial_corr | heterosked) & !cross_dep) {
+    cat(">>> Autocorrelation and/or heteroskedasticity - use HAC robust SEs\n")
+    if (model_type == "fe") {
+      final_results <- coeftest(chosen_model, 
+                                vcov. = vcovHC(chosen_model, method = "arellano", type = "HC1"))
+      robust_se <- sqrt(diag(vcovHC(chosen_model, method = "arellano", type = "HC1")))
+    } else {
+      final_results <- coeftest(chosen_model, 
+                                vcov. = vcovHC(chosen_model, method = "white1", type = "HC0"))
+      robust_se <- sqrt(diag(vcovHC(chosen_model, method = "white1", type = "HC0")))
+    }
+    
+  } else if (cross_dep) {
+    cat(">>> Cross-sectional dependence - use clustered robust SEs\n")
+    final_results <- coeftest(chosen_model, 
+                              vcov. = vcovHC(chosen_model, method = "white1", type = "HC0", cluster = "group"))
+    robust_se <- sqrt(diag(vcovHC(chosen_model, method = "white1", type = "HC0", cluster = "group")))
+  }
+  
+  print(final_results)
+  
+  
+  ## 5.5. IDENTIFY INSIGNIFICANT VARIABLES ----
+  cat("\n--- CHECKING VARIABLE SIGNIFICANCE ---\n")
+  if (is.matrix(final_results)) {
+    p_values <- final_results[, "Pr(>|t|)"]
+  } else {
+    p_values <- summary(chosen_model)$coefficients[, "Pr(>|t|)"]
+  }
+  
+  insignificant_vars <- names(p_values)[p_values > 0.05 & names(p_values) != "(Intercept)"]
+  if (length(insignificant_vars) > 0) {
+    cat(">>> Not significant at 5% level:", paste(insignificant_vars, collapse = ", "), "\n")
+  } else {
+    cat(">>> All variables are significant at 5% level\n")
+  }
+  
+  ### Save results
+  results_list[[i]] <- chosen_model
+  model_types[i] <- model_type
+  robust_ses[[i]] <- robust_se
+}
+
+## 5.6. SUMMARY OF ALL TESTS ----
+cat("--- SUMMARY OF DIAGNOSTIC TESTS FOR ALL MODELS ---\n")
+
+test_rows <- c("Formula", 
+               "Model Type",
+               "F-test for individual effects (FE vs Pooled)", "  Interpretation",
+               "Breusch-Pagan test (RE vs Pooled)", "  Interpretation",
+               "Hausman test (RE vs FE)", "  Interpretation",
+               "Wald test for variable removal", "  Interpretation",
+               "Breusch-Godfrey/Wooldridge test (Serial Correlation)", "  Interpretation",
+               "Studentized Breusch-Pagan test (Heteroskedasticity)", "  Interpretation",
+               "Pesaran CD test (Cross-sectional Dependence)", "  Interpretation",
+               "Insignificant variables (5%)",
+               "Insignificant variables (10%)")
+
+test_results_matrix <- matrix("", nrow = length(test_rows), ncol = n_models)
+rownames(test_results_matrix) <- test_rows
+colnames(test_results_matrix) <- model_names
+
+wald_results <- list()
+
+for (i in 1:n_models) {
+  
+  #### Formula ----
+  formula_str <- paste(deparse(models_list[[i]]), collapse = " ")
+  test_results_matrix[1, i] <- formula_str
+  
+  ### Model type ----
+  test_results_matrix[2, i] <- toupper(model_types[i])
+  
+  ### tests p-values ----
+  tested_model <- models_list[[i]]
+  pooled <- plm(tested_model, data = panel, model = "pooling")
+  fixed <- plm(tested_model, data = panel, index = c("country", "year"), model = "within")
+  random <- plm(tested_model, data = panel, index = c("country", "year"), model = "random")
+  
+  ### F test ----
+  pf_test <- pFtest(fixed, pooled)
+  test_results_matrix[3, i] <- sprintf("p = %.4f%s", pf_test$p.value, 
+                                       ifelse(pf_test$p.value < 0.05, "*", ""))
+  test_results_matrix[4, i] <- ifelse(pf_test$p.value < 0.05, 
+                                      "Panel effects exist", 
+                                      "No panel effects")
+  
+  ### BP test ----
+  bp_test <- plmtest(pooled, type = "bp")
+  test_results_matrix[5, i] <- sprintf("p = %.4f%s", bp_test$p.value, 
+                                       ifelse(bp_test$p.value < 0.05, "*", ""))
+  test_results_matrix[6, i] <- ifelse(bp_test$p.value < 0.05, 
+                                      "Random effects exist", 
+                                      "No random effects")
+  
+  ### Hausman test ----
+  if (pf_test$p.value < 0.05 | bp_test$p.value < 0.05) {
+    tryCatch({
+      hausman_test <- phtest(fixed, random)
+      test_results_matrix[7, i] <- sprintf("p = %.4f%s", hausman_test$p.value, 
+                                           ifelse(hausman_test$p.value < 0.05, "*", ""))
+      test_results_matrix[8, i] <- ifelse(hausman_test$p.value < 0.05, 
+                                          "Use Fixed Effects", 
+                                          "Use Random Effects")
+    }, error = function(e) {
+      test_results_matrix[7, i] <- "Failed"
+      test_results_matrix[8, i] <- "Test failed"
+    })
+  } else {
+    test_results_matrix[7, i] <- "N/A"
+    test_results_matrix[8, i] <- "Use Pooled OLS"
+  }
+  
+  ### Wald test ----
+  if (i > 1) {
+    tryCatch({
+      if (model_types[i] == "fe") {
+        model_current <- plm(models_list[[i]], data = panel, model = "within", index = c("country", "year"))
+        model_previous <- plm(models_list[[i-1]], data = panel, model = "within", index = c("country", "year"))
+      } else if (model_types[i] == "re") {
+        model_current <- plm(models_list[[i]], data = panel, model = "random", index = c("country", "year"))
+        model_previous <- plm(models_list[[i-1]], data = panel, model = "random", index = c("country", "year"))
+      } else {
+        model_current <- plm(models_list[[i]], data = panel, model = "pooling")
+        model_previous <- plm(models_list[[i-1]], data = panel, model = "pooling")
+      }
+      
+      wald_test <- waldtest(model_current, model_previous)
+      p_value <- wald_test$`Pr(>Chisq)`[2]
+      if (is.na(p_value)) p_value <- wald_test$`Pr(>F)`[2]
+      
+      test_results_matrix[9, i] <- sprintf("p = %.4f%s", p_value, 
+                                           ifelse(p_value > 0.05, "*", ""))
+      test_results_matrix[10, i] <- ifelse(p_value > 0.05, 
+                                           "Removal justified", 
+                                           "Keep removed vars")
+    }, error = function(e) {
+      test_results_matrix[9, i] <- "Failed"
+      test_results_matrix[10, i] <- "Test failed"
+    })
+  } else {
+    test_results_matrix[9, i] <- "N/A"
+    test_results_matrix[10, i] <- ""
+  }
+  
+  ### Serial correlation ----
+  if (model_types[i] != "pooled") {
+    serial_test <- pbgtest(results_list[[i]])
+    test_results_matrix[11, i] <- sprintf("p = %.4f%s", serial_test$p.value, 
+                                          ifelse(serial_test$p.value < 0.05, "*", ""))
+    test_results_matrix[12, i] <- ifelse(serial_test$p.value < 0.05, 
+                                         "Autocorrelation present", 
+                                         "No autocorrelation")
+  } else {
+    ols_model <- lm(tested_model, data = panel)
+    dw_test <- dwtest(ols_model)
+    test_results_matrix[11, i] <- sprintf("DW = %.2f, p = %.4f%s", 
+                                          dw_test$statistic,
+                                          dw_test$p.value,
+                                          ifelse(dw_test$p.value < 0.05, "*", ""))
+    test_results_matrix[12, i] <- ifelse(dw_test$p.value < 0.05, 
+                                         "Autocorrelation present", 
+                                         "No autocorrelation")
+  }
+  
+  ### Heteroskedasticity ----
+  hetero_test <- bptest(tested_model, data = panel, studentize = TRUE)
+  test_results_matrix[13, i] <- sprintf("p = %.4f%s", hetero_test$p.value, 
+                                        ifelse(hetero_test$p.value < 0.05, "*", ""))
+  test_results_matrix[14, i] <- ifelse(hetero_test$p.value < 0.05, 
+                                       "Heteroskedasticity present", 
+                                       "Homoskedasticity")
+  
+  ### Cross-sectional dependence ----
+  if (model_types[i] != "pooled") {
+    cd_test <- pcdtest(results_list[[i]], test = "cd")
+    test_results_matrix[15, i] <- sprintf("p = %.4f%s", cd_test$p.value, 
+                                          ifelse(cd_test$p.value < 0.05, "*", ""))
+    test_results_matrix[16, i] <- ifelse(cd_test$p.value < 0.05, 
+                                         "Cross-sect. dep. present. Robust SEs applied (Clustered)", 
+                                         "No cross-sect. dep.")
+  } else {
+    test_results_matrix[15, i] <- "N/A"
+    test_results_matrix[16, i] <- "Not applicable"
+  }
+  
+  ### Insignificant variables ----
+  if (!is.null(robust_ses[[i]])) {
+    # results with robust SEs
+    if (model_types[i] == "fe") {
+      coef_test <- coeftest(results_list[[i]], 
+                            vcov. = vcovHC(results_list[[i]], method = "arellano", type = "HC1"))
+    } else {
+      coef_test <- coeftest(results_list[[i]], 
+                            vcov. = vcovHC(results_list[[i]], method = "white1", type = "HC0"))
+    }
+    p_values <- coef_test[, "Pr(>|t|)"]
+  } else {
+    p_values <- summary(results_list[[i]])$coefficients[, "Pr(>|t|)"]
+  }
+  
+  # 5%
+  insignif_5 <- names(p_values)[p_values > 0.05 & names(p_values) != "(Intercept)"]
+  if (length(insignif_5) > 0) {
+    test_results_matrix[17, i] <- paste(insignif_5, collapse = ", ")
+  } else {
+    test_results_matrix[17, i] <- "All significant"
+  }
+  
+  # 10%
+  insignif_10 <- names(p_values)[p_values > 0.10 & names(p_values) != "(Intercept)"]
+  if (length(insignif_10) > 0) {
+    test_results_matrix[18, i] <- paste(insignif_10, collapse = ", ")
+  } else {
+    test_results_matrix[18, i] <- "All significant"
+  }
+}
+
+### *print ----
+print(test_results_matrix, quote = FALSE, right = FALSE)
+```
+
+Table 6.2‑4 SUMMARY OF MODEL RESULTS (DEPENDENT VARIABLE:
+EMP_RATE_FEMALE AND EMP_RATE_MALE)
+
++---------+---------+---------+---------+---------+---------+---------+
+| *       | **M     | **M     | **M     | **M     | **M     | **M     |
+| *Test** | odel1** | odel2** | odel3** | odel4** | odel5** | odel6** |
++=========+=========+=========+=========+=========+=========+=========+
+| **Fo    | e       | e       | e       | emp_ra  | emp_ra  | emp_ra  |
+| rmula** | mp_rate | mp_rate | mp_rate | te_male | te_male | te_male |
+|         | _female | _female | _female | \~      | \~      | \~      |
+|         | \~      | \~      | \~      | ai_     | ai_     | ai_     |
+|         | ai_     | ai_     | ai_     | hiring_ | hiring_ | hiring_ |
+|         | hiring_ | hiring_ | hiring_ | index + | index + | index + |
+|         | index + | index + | index + | ai_t    | ai_t    | ai_t    |
+|         | ai_t    | ai_t    | ai_t    | any_c + | any_c + | any_c + |
+|         | any_c + | any_c + | any_c + | ai_t    | ai_t    | ai_t    |
+|         | ai_t    | ai_t    | ai_t    | any_e + | any_e + | any_e + |
+|         | any_e + | any_e + | any_e + | ai_t    | **ai_t  | ai_t    |
+|         | ai_t    | **ai_t  | ai_t    | any_f + | any_f + | any_g + |
+|         | any_f + | any_f + | any_g + | ai_t    | ai_t    | ai_t    |
+|         | ai_t    | ai_t    | ai_t    | any_g + | any_g + | any_j + |
+|         | any_g + | any_g + | any_j + | ai_t    | ai      | ai      |
+|         | ai_t    | ai_t    | ai      | any_h + | _tany_h | _tany_m |
+|         | any_h + | any_h + | _tany_m | ai_t    | +**     |         |
+|         | ai_t    | ai_tan  |         | any_i + | ai_t    |         |
+|         | any_i + | y_i** + |         | ai_t    | any_i + |         |
+|         | ai_t    | ai_t    |         | any_j + | ai_t    |         |
+|         | any_j + | any_j + |         | ai_t    | any_j + |         |
+|         | ai_t    | ai_t    |         | any_m + | ai_t    |         |
+|         | any_m + | any_m + |         | ai_t    | any_m + |         |
+|         | ai_t    | **ai_t  |         | any_n + | **ai_t  |         |
+|         | any_n + | any_n** |         | **ai    | any_n** |         |
+|         | **ai    |         |         | _tany_m |         |         |
+|         | _tany_m |         |         | ean:ai_ |         |         |
+|         | ean:ai_ |         |         | hiring_ |         |         |
+|         | hiring_ |         |         | index** |         |         |
+|         | index** |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **Model | FE      | RE      | RE      | RE      | RE      | RE      |
+| Type**  |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| *       | p =     | p =     | p =     | p =     | p =     | p =     |
+| *F-test | 0       | 0       | 0       | 0       | 0       | 0       |
+| for     | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* |
+| ind     |         |         |         |         |         |         |
+| ividual |         |         |         |         |         |         |
+| effects |         |         |         |         |         |         |
+| (FE vs  |         |         |         |         |         |         |
+| Po      |         |         |         |         |         |         |
+| oled)** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Panel   | Panel   | Panel   | Panel   | Panel   | Panel   |
+| terpret | effects | effects | effects | effects | effects | effects |
+| ation** | exist   | exist   | exist   | exist   | exist   | exist   |
++---------+---------+---------+---------+---------+---------+---------+
+| *       | p =     | p =     | p =     | p =     | p =     | p =     |
+| *Breusc | 0       | 0       | 0       | 0       | 0       | 0       |
+| h-Pagan | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* |
+| test    |         |         |         |         |         |         |
+| (RE vs  |         |         |         |         |         |         |
+| Po      |         |         |         |         |         |         |
+| oled)** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Random  | Random  | Random  | Random  | Random  | Random  |
+| terpret | effects | effects | effects | effects | effects | effects |
+| ation** | exist   | exist   | exist   | exist   | exist   | exist   |
++---------+---------+---------+---------+---------+---------+---------+
+| **      | p =     | p =     | p =     | p =     | p =     | p =     |
+| Hausman | 0       | 0.9226  | 0.9460  | 1.0000  | 0.5862  | 0.9397  |
+| test    | .0000\* |         |         |         |         |         |
+| (RE vs  |         |         |         |         |         |         |
+| FE)**   |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Use     | Use     | Use     | Use     | Use     | Use     |
+| terpret | Fixed   | Random  | Random  | Random  | Random  | Random  |
+| ation** | Effects | Effects | Effects | Effects | Effects | Effects |
++---------+---------+---------+---------+---------+---------+---------+
+| **Wald  |         | p =     | p =     |         | p =     | p =     |
+| test    |         | 0       | 0       |         | 0       | 0       |
+| for     |         | .4319\* | .9116\* |         | .3174\* | .8361\* |
+| v       |         |         |         |         |         |         |
+| ariable |         |         |         |         |         |         |
+| re      |         |         |         |         |         |         |
+| moval** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    |         | Removal | Removal |         | Removal | Removal |
+| terpret |         | ju      | ju      |         | ju      | ju      |
+| ation** |         | stified | stified |         | stified | stified |
++---------+---------+---------+---------+---------+---------+---------+
+| **Breus | p =     | p =     | p =     | p =     | p =     | p =     |
+| ch-Godf | 0.7053  | 0.0630  | 0.1468  | 0       | 0.0723  | 0.1567  |
+| rey/Woo |         |         |         | .0152\* |         |         |
+| ldridge |         |         |         |         |         |         |
+| test    |         |         |         |         |         |         |
+| (Serial |         |         |         |         |         |         |
+| Correla |         |         |         |         |         |         |
+| tion)** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | No      | No      | No      | A       | No      | No      |
+| terpret | a       | a       | a       | utocorr | a       | a       |
+| ation** | utocorr | utocorr | utocorr | elation | utocorr | utocorr |
+|         | elation | elation | elation | present | elation | elation |
++---------+---------+---------+---------+---------+---------+---------+
+| **Stud  | p =     | p =     | p =     | p =     | p =     | p =     |
+| entized | 0.1204  | 0       | 0       | 0.2789  | 0.2490  | 0       |
+| Breusc  |         | .0107\* | .0010\* |         |         | .0418\* |
+| h-Pagan |         |         |         |         |         |         |
+| test    |         |         |         |         |         |         |
+| (       |         |         |         |         |         |         |
+| Heteros |         |         |         |         |         |         |
+| kedasti |         |         |         |         |         |         |
+| city)** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Ho      | Hete    | Hete    | Ho      | Ho      | Hete    |
+| terpret | moskeda | roskeda | roskeda | moskeda | moskeda | roskeda |
+| ation** | sticity | sticity | sticity | sticity | sticity | sticity |
+|         |         | present | present |         |         | present |
++---------+---------+---------+---------+---------+---------+---------+
+| **      | p =     | p =     | p =     | p =     | p =     | p =     |
+| Pesaran | 0       | 0       | 0       | 0       | 0       | 0       |
+| CD test | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* | .0000\* |
+| (C      |         |         |         |         |         |         |
+| ross-se |         |         |         |         |         |         |
+| ctional |         |         |         |         |         |         |
+| Depend  |         |         |         |         |         |         |
+| ence)** |         |         |         |         |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| **In    | Cros    | Cros    | Cros    | Cros    | Cros    | Cros    |
+| terpret | s-sect. | s-sect. | s-sect. | s-sect. | s-sect. | s-sect. |
+| ation** | dep.    | dep.    | dep.    | dep.    | dep.    | dep.    |
+|         | p       | p       | p       | p       | p       | p       |
+|         | resent. | resent. | resent. | resent. | resent. | resent. |
+|         | Robust  | Robust  | Robust  | Robust  | Robust  | Robust  |
+|         | SEs     | SEs     | SEs     | SEs     | SEs     | SEs     |
+|         | applied | applied | applied | applied | applied | applied |
+|         | (Clu    | (Clu    | (Clu    | (Clu    | (Clu    | (Clu    |
+|         | stered) | stered) | stered) | stered) | stered) | stered) |
++---------+---------+---------+---------+---------+---------+---------+
+| *       | ai      | ai_     | ai      | ai      | ai_     | All     |
+| *Insign | _hiring | tany_f, | _tany_g | _hiring | tany_f, | sign    |
+| ificant | _index, | ai_     |         | _index, | ai_     | ificant |
+| va      | ai_     | tany_g, |         | ai_     | tany_h, |         |
+| riables | tany_f, | ai_     |         | tany_f, | ai_     |         |
+| (5%)**  | ai_     | tany_h, |         | ai_     | tany_i, |         |
+|         | tany_g, | ai_     |         | tany_h, | ai_     |         |
+|         | ai_     | tany_i, |         | ai_     | tany_j, |         |
+|         | tany_h, | ai      |         | tany_i, | ai      |         |
+|         | ai_     | _tany_n |         | ai_     | _tany_n |         |
+|         | tany_i, |         |         | tany_j, |         |         |
+|         | ai_     |         |         | ai_     |         |         |
+|         | tany_n, |         |         | tany_n, |         |         |
+|         | ai_hiri |         |         | ai_hiri |         |         |
+|         | ng_inde |         |         | ng_inde |         |         |
+|         | x:ai_ta |         |         | x:ai_ta |         |         |
+|         | ny_mean |         |         | ny_mean |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+| *       | ai      | ai_     | ai      | ai      | ai_     | All     |
+| *Insign | _hiring | tany_f, | _tany_g | _hiring | tany_f, | sign    |
+| ificant | _index, | ai_     |         | _index, | ai_     | ificant |
+| va      | ai_     | tany_g, |         | ai_     | tany_h, |         |
+| riables | tany_f, | ai_     |         | tany_f, | ai_     |         |
+| (10%)** | ai_     | tany_h, |         | ai_     | tany_i, |         |
+|         | tany_g, | ai_     |         | tany_h, | ai_     |         |
+|         | ai_     | tany_i, |         | ai_     | tany_j, |         |
+|         | tany_h, | ai      |         | tany_i, | ai      |         |
+|         | ai_     | _tany_n |         | ai_     | _tany_n |         |
+|         | tany_i, |         |         | tany_j, |         |         |
+|         | ai_     |         |         | ai_     |         |         |
+|         | tany_n, |         |         | tany_n, |         |         |
+|         | ai_hiri |         |         | ai_hiri |         |         |
+|         | ng_inde |         |         | ng_inde |         |         |
+|         | x:ai_ta |         |         | x:ai_ta |         |         |
+|         | ny_mean |         |         | ny_mean |         |         |
++---------+---------+---------+---------+---------+---------+---------+
+
+Table 6.2‑5 MODEL COMPARISON (DEPENDENT VARIABLE: EMP_RATE_FEMALE and
+EMP_RATE_MALE)
+
+```{r echo=FALSE}
+model_names <- paste0("Model ", 1:(n_models))
+
+# notes
+notes <- c()
+for (i in 1:n_models) {
+  notes <- c(notes, paste(model_names[i], ":", 
+                          ifelse(model_types[i] == "fe", "Fixed Effects",
+                                 ifelse(model_types[i] == "re", "Random Effects",
+                                        ifelse(model_types[i] == "pooled", "Pooled OLS", "Unknown")))))
+}
+
+# table
+use_robust <- any(!sapply(robust_ses, is.null))
+
+if (use_robust) {
+  for (i in 1:n_models) {
+    if (is.null(robust_ses[[i]])) {
+      robust_ses[[i]] <- sqrt(diag(vcov(results_list[[i]])))
+    }
+  }
+  
+  stargazer(results_list,
+            type = "text",
+            title = "Model Comparison: General to Specific",
+            column.labels = model_names,
+            dep.var.labels = dep_var_name,
+            se = robust_ses,
+            keep.stat = c("n", "rsq", "adj.rsq"),
+            star.cutoffs = c(0.1, 0.05, 0.01),
+            notes = c("Robust standard errors in parentheses", notes),
+            notes.align = "l",
+            digits = 3,
+            no.space = TRUE)
+} else {
+  stargazer(results_list,
+            type = "text",
+            title = "Model Comparison: General to Specific",
+            column.labels = model_names,
+            dep.var.labels = dep_var_name,
+            keep.stat = c("n", "rsq", "adj.rsq"),
+            star.cutoffs = c(0.1, 0.05, 0.01),
+            notes = c("Standard errors in parentheses", notes),
+            notes.align = "l",
+            digits = 3,
+            no.space = TRUE)
+}
+```
+
+Impact Comparison (AI_TANY indicators - Table 6.2-5):
+
+Supporting H2:
+
+-   Water Supply, sewerage, waste management (ai_tany_e): both positive,
+    and the positive impact was stronger for females (0.240) than males
+    (0.188).
+-   Wholesale and retail trade (ai_tany_g) for both displayed a positive
+    impact, but higher for male (0.213 vs 0.138).
+-   Information and communication (ai_tany_j): both positive, and the
+    positive impact was stronger for females (0.164) than males (0.060).
+
+Contradicting H2:
+
+-   AI hiring index (ai_hiring_index) for both negative, but the
+    negative impact was stronger for females (-0.077 vs. -0.057).
+-   Manufacturing (ai_tany_c) for both negative, and the negative impact
+    was stronger for females (-0.302 vs. -0.240).
+-   Professional, scientific and technical activities (ai_tany_m) for
+    both negative, and the negative impact was stronger for females
+    (-0.132 vs -0.095).
+
+Table 6.2‑6 Comparison of AI Adoption Impact on Female vs. Male
+Employment Rates
+
++--------------------------------+------------------+-----------------+
+| **AI Adoption Indicator**      | **Impact on      | **Impact on     |
+|                                | Female           | Male Employment |
+|                                | Employment       | (Model 6)**     |
+|                                | (Model 3)**      |                 |
++--------------------------------+------------------+-----------------+
+| **ai_hiring_index (AI in       | -0.077           | -0.057          |
+| hiring processes)**            |                  |                 |
++--------------------------------+------------------+-----------------+
+| **ai_tany_c (AI in             | -0.302           | -0.240          |
+| Manufacturing)**               |                  |                 |
++--------------------------------+------------------+-----------------+
+| **ai_tany_e (AI in Water       | 0.240            | 0.188           |
+| supply; sewerage, waste        |                  |                 |
+| management)**                  |                  |                 |
++--------------------------------+------------------+-----------------+
+| **ai_tany_g (AI in Wholesale   | 0.138            | 0.213           |
+| and retail trade)**            |                  |                 |
++--------------------------------+------------------+-----------------+
+| **ai_tany_j (AI in Information | 0.164            | 0.060           |
+| and communication)**           |                  |                 |
++--------------------------------+------------------+-----------------+
+| **ai_tany_m (AI in             | -0.132           | -0.095          |
+| Professional, scientific and   |                  |                 |
+| technical activities)**        |                  |                 |
++--------------------------------+------------------+-----------------+
+
+# Findings
+
+The analysis of AI adoption and its impact on employment in the EU
+provides detailed results for both its main and secondary hypotheses,
+and highlights critical areas for future consideration and action.
+
+## Main Hypothesis (H1)
+
+The analysis investigated how sectoral AI adoption in EU countries
+influences the employment rate for individuals aged 20-64, hypothesizing
+that AI technologies complement human labour and create new job
+opportunities. The analysis indicates different effect among sectors
+with positive dependency in sectors:
+
+-   water supply; sewerage, waste management
+-   wholesale and retail trade
+-   information and communication
+-   administrative and support service activities
+
+and negative in sectors:
+
+-   manufacturing
+-   professional, scientific and technical activities.
+
+Liu (2024) supports finding of a negative correlation with unemployment.
+His regression analysis (2012-2022) revealed that increased AI adoption
+is linked to lower unemployment. He found that increases in the AI Index
+(published papers) led to decrease in unemployment rates, and increased
+public interest in AI (measured by Google Trends) correlated with
+reduction in unemployment. The information technology and consumer goods
+sectors increased in job creation due to the rapid implementation of
+artificial intelligence.[1]
+
+Adhikari & Hamal (2024) found that higher AI adoption and education
+levels initially lead to job displacement and do not immediately
+translate into job creation. However, strategic implementation of AI
+significantly mitigates these adverse effects in the long term. [2]
+
+## Secondary Hypothesis (H2)
+
+The analysis examined the relationship between AI adoption and
+employment gender-specific effects, hypothesizing stronger positive
+impact on female employment rates compared to male employment rates in
+EU countries. The analysis indicates different effect among sectors with
+positive dependency in sectors:
+
+-   water supply; sewerage, waste management
+-   information and communication
+
+and stronger negative in sectors:
+
+-   manufacturing
+-   professional, scientific and technical activities.
+
+Effect in the rest of the sectors were mixed.
+
+Also, AI hiring index dependency on employment was negative for both
+female and male, but the negative impact was stronger for females.
+
+Cited articles do not contain direct findings on gender-specific
+employment impacts of AI adoption. However, the potential for AI to
+exacerbate existing labour market inequalities is discussed [2,3]. This
+general concern about inequality includes gender as a dimension that
+needs to be addressed. Analysis of H2 of gender-specific effects
+contributes to this gap and provides empirical data.
+
+## Methodological Similarities and Differences
+
+Selected literature describes utilisation of empirical data and
+regression analysis from 2012 to 2022 [1]. The core quantitative
+analysis was based on a multiple linear regression model, using the AI
+Index and Google Trends data as predictors for the unemployment rate.
+Also, Pearson correlation coefficients were calculated and the dataset
+was divided into training and test parts. Other source employed a robust
+econometric approach for data from 2010 to 2022 [2]. A key technique was
+Principal Components Analysis (PCA) to address multicollinearity among
+variables, transforming them into uncorrelated principal components for
+regression analysis. Heteroskedasticity-robust standard errors were used
+and stationarity tests were conducted.
+
+## Summary
+
+In summary, my findings on the partially positive correlation between AI
+adoption and employment (or negative with unemployment) are supported by
+Liu (2024). My study of gender-specific effects provides new empirical
+evidence in area that literature identifies as important but only
+generally indicate potential inequalities.
+
+## Next Possible Ways of Handling the Topic/Problem
+
+Analysing AI adoption and its impacts is described as an urgent economic
+problem requiring multifaceted solutions. Given the growing and evolving
+nature of AI, ongoing efforts are needed to manage its disruptive
+consequences while leveraging its benefits. It is essential that
+policymakers develop adaptive policies and education systems to prepare
+the workforce for the changes caused by AI adoption. There is a need to
+define responsibilities, liabilities and guilt between human and AI.
+Policymakers need to develop strategies to mitigate negative impacts,
+especially in low-skilled sectors where job losses are most visible.
+Reskilling and upskilling programs are key interventions to equip
+workers for new AI-related roles and address the changing nature of job
+roles and skills required. Further analysis is needed to determine which
+specific skills and sectors will be most affected by AI adoption.
+Analysing sector-specific challenges and successes is critical to
+support effective workforce transitions. For large-scale AI
+implementations, especially in sectors such as healthcare, quantifying
+medical and economic outcomes using standard procedures is crucial to
+justify investment. Practical AI implementation faces fundamental
+barriers, such as lack difficulties in sharing information, and the need
+to promote standards. Addressing these challenges requires building
+capacity in the AI ​​ecosystem. Fostering trust and confidence among
+professionals and the general public is essential for successful
+adoption and acceptance of AI across sectors. The complex interplay of
+technological, economic, and social factors requires further
+interdisciplinary research to provide a holistic understanding and
+develop effective strategies to manage implications of AI. This includes
+further exploration of gender employment impacts, taking into account
+the mixed findings of the secondary hypothesis.
+
+# Bibliography
+
+[1] Liu,J. (2024). The Impact of the Development of Artificial
+Intelligence on Unemployment Rates. Advances in Economics, Management
+and Political Sciences,121,154-163.
+<https://doi.org/10.54254/2754-1169/121/20242410>
+
+[2] Adhikari, P., & Hamal, P. (2024). Impact and Regulations of AI on
+Labor Market and Employment in USA. Preprints.
+<https://doi.org/10.20944/preprints202407.0906.v1>
+
+[3] Ernst, E., Merola, R. and Samaan, D. Economics of Artificial
+Intelligence: Implications for the Future of Work. IZA Journal of Labor
+Policy, Sciendo, Vol. 9 (Issue 1), (2019)
+<https://doi.org/10.2478/izajolp-2019-0004>
+
+[4] Havryk, A., & Nazarova, T. (2024). Artificial intelligence and its
+role in the labor market and financial sector itself: US point of view.
+International Science Journal of Management, Economics & Finance, 3(3),
+1–9. <https://doi.org/10.46299/j.isjmef.20240303.01>
+
+[5] Wolff J, Pauling J, Keck A and Baumbach J (2021) Success Factors of
+Artificial Intelligence Implementation in Healthcare. Front. Digit.
+Health 3:594971. doi:
+[10.3389/fdgth.2021.594971](https://doi.org/10.3389/fdgth.2021.594971)
